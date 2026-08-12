@@ -2,7 +2,8 @@ name: Build Android APK
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ "main", "master" ]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -10,33 +11,34 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Sync Capacitor
-        run: npx cap sync android
+          node-version: '20'
 
       - name: Setup Java JDK
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Build APK via Gradle
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Build APK using Cordova
         run: |
-          cd android
-          chmod +x gradlew
-          ./gradlew assembleDebug
+          npm install -g cordova
+          cordova create app com.colormixer.app ColorMixer
+          cd app
+          rm -rf www/*
+          cp -r ../index.html ../style.css ../script.js www/ 2>/dev/null || cp -r ../* www/ || true
+          cordova platform add android
+          cordova build android --debug
 
       - name: Upload Debug APK
         uses: actions/upload-artifact@v4
         with:
           name: ColorMixer-APK
-          path: android/app/build/outputs/apk/debug/app-debug.apk
+          path: app/platforms/android/app/build/outputs/apk/debug/app-debug.apk
