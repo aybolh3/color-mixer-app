@@ -316,9 +316,8 @@
     </div>
     
     <div class="header-controls">
-      <!-- اختيار اللغة -->
       <div>
-        <label style="font-size:0.75rem; color:#64748b; display:block; font-weight:bold;" id="lblLang">اللغة / Language:</label>
+        <label style="font-size:0.75rem; color:#64748b; display:block; font-weight:bold;" id="lblLang" for="langSelect">اللغة / Language:</label>
         <select id="langSelect" onchange="changeLanguage(this.value)">
           <option value="ar" selected>🌐 العربية</option>
           <option value="fr">🌐 Français</option>
@@ -326,11 +325,10 @@
         </select>
       </div>
 
-      <!-- اختيار وحدة القياس بالغطاء -->
       <div class="cap-ref-container">
-        <span style="font-size:1.5rem;">🧢</span>
+        <span style="font-size:1.5rem;" aria-hidden="true">🧢</span>
         <div>
-          <label style="font-size:0.75rem; color:#64748b; display:block; font-weight:bold;" id="lblUnit">وحدة القياس:</label>
+          <label style="font-size:0.75rem; color:#64748b; display:block; font-weight:bold;" id="lblUnit" for="unitSelect">وحدة القياس:</label>
           <select id="unitSelect" onchange="changeUnit(this.value)">
             <option value="caps" id="optCaps" selected>🧢 أغطية صبغة (Caps)</option>
             <option value="ml" id="optMl">🧪 ملليلتر (ml)</option>
@@ -354,13 +352,11 @@
           <input type="color" id="customPicker" value="#40e0d0" style="width: 100%; height: 40px; border-radius: 8px; border: none; cursor: pointer;" oninput="handleCustomColor(this.value)">
         </div>
 
-        <!-- التقاط لون المادة -->
         <div class="capture-box">
           <strong style="display: block; margin-bottom: 8px;" id="titleCapture">📷 التقاط لون المادة:</strong>
           <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
             <button class="btn btn-secondary" onclick="useEyeDropper()" id="btnEyedropper">👁️ أداة التقاط اللون</button>
             
-            <!-- زر الكاميرا ورفع الصور متوافق مع كافة الأجهزة واللغات -->
             <label class="btn btn-secondary" style="cursor: pointer;">
               <span id="txtUpload">📁 رفع صورة / التقاط</span>
               <input type="file" accept="image/*" capture="environment" id="imageInput" style="display: none;" onchange="handleImageUpload(event)">
@@ -400,14 +396,13 @@
           💧 <strong id="lblDilution">المخفف / المذيب المطلوب:</strong> <span id="waterAmount">~0.5 غطاء</span> (<span id="lblRatio">نسبة ١٥٪</span>)
         </div>
 
-        <!-- التحكم بحجم الدفعة -->
         <div class="scale-controls">
           <div style="display: flex; justify-content: space-between; align-items: center;">
             <span style="font-weight: 600;" id="lblBatchScale">مضاعف الخلطة:</span>
             <div style="display: flex; align-items: center; gap: 10px;">
-              <button class="btn btn-secondary" onclick="adjustScale(-1)">-</button>
+              <button class="btn btn-secondary" onclick="adjustScale(-1)" aria-label="Decrease Scale">-</button>
               <span id="scaleFactor" style="font-weight: bold; font-size: 1.1rem;">1x</span>
-              <button class="btn btn-secondary" onclick="adjustScale(1)">+</button>
+              <button class="btn btn-secondary" onclick="adjustScale(1)" aria-label="Increase Scale">+</button>
             </div>
           </div>
 
@@ -578,7 +573,13 @@
     let isCustom = false;
     let batchScale = 1;
     let customLiterVolume = null;
-    let savedRecipes = JSON.parse(localStorage.getItem('my_color_mixes') || '[]');
+    let savedRecipes = [];
+
+    try {
+      savedRecipes = JSON.parse(localStorage.getItem('my_color_mixes') || '[]');
+    } catch (e) {
+      savedRecipes = [];
+    }
 
     const baseHexes = { white: '#ffffff', blue: '#2563eb', yellow: '#eab308', red: '#ef4444', black: '#1e293b' };
 
@@ -612,10 +613,7 @@
       document.getElementById('lblCustomColor').innerText = t.lblCustomColor;
       document.getElementById('titleCapture').innerText = t.titleCapture;
       document.getElementById('btnEyedropper').innerText = t.btnEyedropper;
-      
-      // تحديث نص رفع الصور/الكاميرا بشكل آمن دون تخريب الـ input
       document.getElementById('txtUpload').innerText = t.lblUpload;
-      
       document.getElementById('canvasHelpText').innerText = t.canvasHelpText;
       document.getElementById('titleSaved').innerText = t.titleSaved;
       document.getElementById('recipeNameInput').placeholder = t.recipePlaceholder;
@@ -720,7 +718,6 @@
       reader.readAsDataURL(file);
     }
 
-    // حساب عدد الأغطية من كود اللون بأمان
     function calculateCapsFromHex(hex) {
       let cleanHex = hex.replace('#', '');
       if (cleanHex.length === 3) {
@@ -741,7 +738,7 @@
       if (redCaps > 0) recipe.red = Math.max(1, redCaps);
       if (yellowCaps > 0) recipe.yellow = Math.max(1, yellowCaps);
       if (blueCaps > 0) recipe.blue = Math.max(1, blueCaps);
-      return recipe;
+      return Object.keys(recipe).length > 0 ? recipe : { white: 1 };
     }
 
     function adjustScale(delta) {
@@ -846,7 +843,11 @@
       
       const newSaved = { name, hex: currentHex, recipe: currentRecipe };
       savedRecipes.push(newSaved);
-      localStorage.setItem('my_color_mixes', JSON.stringify(savedRecipes));
+      try {
+        localStorage.setItem('my_color_mixes', JSON.stringify(savedRecipes));
+      } catch (e) {
+        console.error('LocalStorage not available');
+      }
       
       nameInput.value = '';
       renderSavedRecipes();
@@ -885,7 +886,11 @@
 
     function deleteRecipe(index) {
       savedRecipes.splice(index, 1);
-      localStorage.setItem('my_color_mixes', JSON.stringify(savedRecipes));
+      try {
+        localStorage.setItem('my_color_mixes', JSON.stringify(savedRecipes));
+      } catch (e) {
+        console.error('LocalStorage not available');
+      }
       renderSavedRecipes();
     }
 
