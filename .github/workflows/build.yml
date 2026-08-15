@@ -1,0 +1,60 @@
+name: Build Android APK
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Cordova
+        run: npm install -g cordova
+
+      - name: Generate Cordova App Structure if missing
+        run: |
+          if [ ! -f "config.xml" ]; then
+            echo "Creating Cordova configuration..."
+            cordova create temp_app com.aybolh3.colormixer "ColorMixer"
+            cp -r temp_app/config.xml .
+            rm -rf temp_app
+          fi
+
+      - name: Prepare WWW Directory
+        run: |
+          mkdir -p www
+          cp index.html www/ 2>/dev/null || true
+          if [ -d "AppIcons" ]; then cp -r AppIcons www/ 2>/dev/null || true; fi
+
+      - name: Add Android Platform
+        run: cordova platform add android@12.0.0 --save
+
+      - name: Build Android APK
+        run: cordova build android --release --no-telemetry
+
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ColorMixer-APK
+          path: platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
