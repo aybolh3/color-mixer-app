@@ -21,6 +21,11 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: Setup Gradle 8.7
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.7'
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -29,7 +34,7 @@ jobs:
       - name: Install Cordova CLI
         run: npm install -g cordova@12.0.0
 
-      - name: Setup Cordova Project
+      - name: Setup Cordova Project & Build APK
         run: |
           cordova create cordova_app com.aybolh3.colormixer "ColorMixer"
           cd cordova_app
