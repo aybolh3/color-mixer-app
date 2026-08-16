@@ -22,7 +22,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
     body { background: var(--bg-gradient); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 20px; }
     header { width: 100%; max-width: 1000px; display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 2px solid #cbd5e1; margin-bottom: 30px; flex-wrap: wrap; gap: 15px; }
-    .logo { font-size: 1.4rem; font-weight: 800; color: var(--primary); }
+    .logo { font-size: 1.4rem; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 8px; }
     .header-controls { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
     select, input[type="text"], input[type="number"] { padding: 8px 12px; border-radius: 8px; border: 1px solid #cbd5e1; background: white; font-size: 0.9rem; font-weight: 600; outline: none; }
     .main-container { width: 100%; max-width: 1000px; display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
@@ -40,7 +40,7 @@
     .formula-section { display: flex; flex-direction: column; gap: 12px; }
     .ingredient-row { display: flex; align-items: center; justify-content: space-between; background: #f8fafc; padding: 10px 14px; border-radius: 12px; border: 1px solid #e2e8f0; }
     .ingredient-info { display: flex; align-items: center; gap: 10px; font-weight: 600; }
-    .cap-count-badge { font-size: 0.9rem; font-weight: 700; background: var(--primary); color: white; padding: 4px 10px; border-radius: 10px; }
+    .cap-count-badge { font-size: 0.9rem; font-weight: 700; background: var(--primary); color: white; padding: 4px 10px; border-radius: 10px; display: inline-flex; align-items: center; gap: 6px; }
     .scale-controls { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; padding-top: 15px; border-top: 1px solid #e2e8f0; }
     .btn { padding: 8px 16px; border-radius: 8px; border: none; background: var(--primary); color: white; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
     .btn-secondary { background: #e2e8f0; color: var(--text-main); }
@@ -48,12 +48,17 @@
     .saved-list { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
     .saved-item { display: flex; justify-content: space-between; align-items: center; background: #f8fafc; padding: 8px 12px; border-radius: 8px; border: 1px solid #e2e8f0; }
     #imageCanvas { max-width: 100%; border-radius: 8px; margin: 10px auto 0 auto; cursor: crosshair; display: none; }
+    .cap-img-icon { width: 22px; height: 22px; object-fit: contain; vertical-align: middle; }
+    .cap-img-icon-lg { width: 28px; height: 28px; object-fit: contain; vertical-align: middle; }
   </style>
 </head>
 <body>
 
   <header>
-    <div class="logo" id="appLogo">🧢 استوديو خلط الألوان - معيار الغطاء</div>
+    <div class="logo" id="appLogo">
+      <img src="cap.png" alt="Cap" class="cap-img-icon-lg">
+      <span id="appLogoText">استوديو خلط الألوان - معيار الغطاء</span>
+    </div>
     
     <div class="header-controls">
       <div>
@@ -66,11 +71,11 @@
       </div>
 
       <div class="cap-ref-container">
-        <span style="font-size:1.5rem;">🧢</span>
+        <img src="cap.png" alt="Cap" class="cap-img-icon-lg">
         <div>
           <label style="font-size:0.75rem; color:#64748b; display:block; font-weight:bold;" id="lblUnit" for="unitSelect">وحدة القياس:</label>
           <select id="unitSelect" onchange="changeUnit(this.value)">
-            <option value="caps" id="optCaps" selected>🧢 أغطية صبغة (Caps)</option>
+            <option value="caps" id="optCaps" selected>أغطية صبغة (Caps)</option>
             <option value="ml" id="optMl">🧪 ملليلتر (ml)</option>
             <option value="g" id="optG">⚖️ غرام (g)</option>
           </select>
@@ -154,8 +159,8 @@
   <script>
     const i18n = {
       ar: {
-        dir: 'rtl', appTitle: 'استوديو خلط الألوان', logo: '🧢 استوديو خلط الألوان - معيار الغطاء',
-        lblLang: 'اللغة:', lblUnit: 'وحدة القياس:', optCaps: '🧢 أغطية صبغة (Caps)', optMl: '🧪 ملليلتر (ml)', optG: '⚖️ غرام (g)',
+        dir: 'rtl', appTitle: 'استوديو خلط الألوان', logo: 'استوديو خلط الألوان - معيار الغطاء',
+        lblLang: 'اللغة:', lblUnit: 'وحدة القياس:', optCaps: 'أغطية صبغة (Caps)', optMl: '🧪 ملليلتر (ml)', optG: '⚖️ غرام (g)',
         titleStep1: '١. اختيار اللون المطلوب', lblCustomColor: 'أو اختر درجة مخصصة:', titleCapture: '📷 التقاط لون المادة:',
         btnEyedropper: '👁️ أداة التقاط اللون', lblUpload: '📁 رفع صورة / التقاط', canvasHelpText: 'انقر في أي مكان على الصورة لالتقاط لون الصبغة بالضبط!',
         titleSaved: '💾 الوصفات المحفوظة', recipePlaceholder: 'اسم الوصفة...', btnSave: 'حفظ', titleStep2: '٢. وصفة القياس بالغطاء والخلط',
@@ -166,8 +171,8 @@
         bases: { white: 'قاعدة / صبغة بيضاء', blue: 'مركز أزرق', yellow: 'مركز أصفر', red: 'مركز أحمر', black: 'مركز أسود' }
       },
       fr: {
-        dir: 'ltr', appTitle: 'Studio de Mélange', logo: '🧢 Studio de Mélange - Mesure par Bouchon',
-        lblLang: 'Langue:', lblUnit: 'Unité de mesure:', optCaps: '🧢 Bouchons (Caps)', optMl: '🧪 Millilitre (ml)', optG: '⚖️ Gramme (g)',
+        dir: 'ltr', appTitle: 'Studio de Mélange', logo: 'Studio de Mélange - Mesure par Bouchon',
+        lblLang: 'Langue:', lblUnit: 'Unité de mesure:', optCaps: 'Bouchons (Caps)', optMl: '🧪 Millilitre (ml)', optG: '⚖️ Gramme (g)',
         titleStep1: '1. Sélection de la couleur', lblCustomColor: 'Ou choisissez une couleur personnalisée:', titleCapture: '📷 Capturer la couleur:',
         btnEyedropper: '👁️ Pipette à écran', lblUpload: '📁 Importer une photo / Caméra', canvasHelpText: 'Cliquez n\'importe où sur l\'image!',
         titleSaved: '💾 Recettes enregistrées', recipePlaceholder: 'Nom de la recette...', btnSave: 'Enregistrer', titleStep2: '2. Formule de mélange',
@@ -178,8 +183,8 @@
         bases: { white: 'Base Blanche', blue: 'Concentré Bleu', yellow: 'Concentré Jaune', red: 'Concentré Rouge', black: 'Concentré Noir' }
       },
       en: {
-        dir: 'ltr', appTitle: 'Color Mixing Studio', logo: '🧢 Color Mixing Studio - Cap Measure',
-        lblLang: 'Language:', lblUnit: 'Measurement Unit:', optCaps: '🧢 Dye Caps', optMl: '🧪 Milliliter (ml)', optG: '⚖️ Gram (g)',
+        dir: 'ltr', appTitle: 'Color Mixing Studio', logo: 'Color Mixing Studio - Cap Measure',
+        lblLang: 'Language:', lblUnit: 'Measurement Unit:', optCaps: 'Dye Caps', optMl: '🧪 Milliliter (ml)', optG: '⚖️ Gram (g)',
         titleStep1: '1. Select Desired Color', lblCustomColor: 'Or pick a custom color:', titleCapture: '📷 Capture Material Color:',
         btnEyedropper: '👁️ Color Picker Tool', lblUpload: '📁 Upload Image / Camera', canvasHelpText: 'Click anywhere on image to pick color!',
         titleSaved: '💾 Saved Recipes', recipePlaceholder: 'Recipe Name...', btnSave: 'Save', titleStep2: '2. Cap Recipe & Mixing Formula',
@@ -236,7 +241,7 @@
       document.getElementById('htmlTag').setAttribute('dir', t.dir);
       document.getElementById('htmlTag').setAttribute('lang', lang);
       document.getElementById('pageTitle').innerText = t.appTitle;
-      document.getElementById('appLogo').innerText = t.logo;
+      document.getElementById('appLogoText').innerText = t.logo;
       document.getElementById('lblLang').innerText = t.lblLang;
       document.getElementById('lblUnit').innerText = t.lblUnit;
       document.getElementById('optCaps').innerText = t.optCaps;
@@ -402,9 +407,11 @@
           unitText = currentUnit === 'ml' ? t.unitMl : t.unitG;
         }
 
+        const capImageTag = (!customLiterVolume && currentUnit === 'caps') ? `<img src="cap.png" alt="Cap" class="cap-img-icon">` : '';
+
         const row = document.createElement('div');
         row.className = 'ingredient-row';
-        row.innerHTML = `<div class="ingredient-info"><span class="color-swatch" style="width:18px; height:18px; background-color:${baseHexes[baseKey]};"></span><span>${t.bases[baseKey]}</span></div><span class="cap-count-badge">🧢 ${displayValue} ${unitText}</span>`;
+        row.innerHTML = `<div class="ingredient-info"><span class="color-swatch" style="width:18px; height:18px; background-color:${baseHexes[baseKey]};"></span><span>${t.bases[baseKey]}</span></div><span class="cap-count-badge">${capImageTag} ${displayValue} ${unitText}</span>`;
         formulaContainer.appendChild(row);
       });
 
