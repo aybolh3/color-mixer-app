@@ -10,12 +10,13 @@
     <allow-intent href="https://*/*" />
 
     <!-- أيقونات Android -->
-    <platform name="android">
-        <icon density="mdpi" src="android/mipmap-mdpi/ic_launcher.png" />
-        <icon density="hdpi" src="android/mipmap-hdpi/ic_launcher.png" />
-        <icon density="xhdpi" src="android/mipmap-xhdpi/ic_launcher.png" />
-        <icon density="xxhdpi" src="android/mipmap-xxhdpi/ic_launcher.png" />
-    </platform>
+        <platform name="android">
+    <icon density="mdpi" src="mipmap-mdpi/ic_launcher.png" />
+    <icon density="hdpi" src="mipmap-hdpi/ic_launcher.png" />
+    <icon density="xhdpi" src="mipmap-xhdpi/ic_launcher.png" />
+    <icon density="xxhdpi" src="mipmap-xxhdpi/ic_launcher.png" />
+    <icon density="xxxhdpi" src="mipmap-xxxhdpi/ic_launcher.png" />
+</platform>
 
     <!-- أيقونات iOS -->
     <platform name="ios">
