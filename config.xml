@@ -11,11 +11,19 @@
 
     <!-- أيقونات Android -->
         <platform name="android">
+    <!-- الأيقونات العادية -->
     <icon density="mdpi" src="mipmap-mdpi/ic_launcher.png" />
     <icon density="hdpi" src="mipmap-hdpi/ic_launcher.png" />
     <icon density="xhdpi" src="mipmap-xhdpi/ic_launcher.png" />
     <icon density="xxhdpi" src="mipmap-xxhdpi/ic_launcher.png" />
     <icon density="xxxhdpi" src="mipmap-xxxhdpi/ic_launcher.png" />
+
+    <!-- الأيقونات التكيفية لـ Android 8+ -->
+    <icon density="mdpi" foreground="mipmap-mdpi/ic_launcher.png" background="#FFFFFF" />
+    <icon density="hdpi" foreground="mipmap-hdpi/ic_launcher.png" background="#FFFFFF" />
+    <icon density="xhdpi" foreground="mipmap-xhdpi/ic_launcher.png" background="#FFFFFF" />
+    <icon density="xxhdpi" foreground="mipmap-xxhdpi/ic_launcher.png" background="#FFFFFF" />
+    <icon density="xxxhdpi" foreground="mipmap-xxxhdpi/ic_launcher.png" background="#FFFFFF" />
 </platform>
 
     <!-- أيقونات iOS -->
