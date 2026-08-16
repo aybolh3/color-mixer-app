@@ -30,15 +30,17 @@ jobs:
       - name: Build APK using Cordova
         run: |
           npm install -g cordova
-          cordova create app com.colormixer.app ColorMixer
+          cordova create app com.aybolh3.colormixer ColorMixer
           cd app
           rm -rf www/*
           
-          # نسخ ملفات مشروع Color Mixer الحقيقية
-          cp -r ../index.html ../style.css ../script.js ../icon.png www/ 2>/dev/null || cp -r ../* www/ || true
-          
-          # إزالة أي ملفات cordova افتراضية قديمة
+          # 1. نسخ ملفات الويب الرئيسية
+          cp -r ../* www/ 2>/dev/null || true
           rm -f www/js/index.js www/css/index.css
+
+          # 2. نسخ ملف config.xml الخاص بك ومجلدات الأيقونات إلى المجلد الرئيسي للتطبيق
+          cp ../config.xml .
+          cp -r ../mipmap-* . 2>/dev/null || true
           
           cordova platform add android
           cordova build android --debug
