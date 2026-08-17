@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.aybolh3.colormixer" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.colormixer.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>ColorMixer</name>
     <description>ColorMixer Application</description>
     <author email="dev@example.com" href="https://example.com">
@@ -13,7 +13,7 @@
     <platform name="android">
         <allow-intent href="market:*" />
         
-        <!-- أيقونة التطبيق الأساسية لتفادي أخطاء AAPT -->
+        <!-- أيقونة التطبيق الأساسية -->
         <icon src="www/icon.png" />
         
         <!-- إعدادات إصدارات الأندرويد -->
