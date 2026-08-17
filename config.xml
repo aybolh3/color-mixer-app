@@ -3,7 +3,7 @@
     <name>ColorMixer</name>
     <description>ColorMixer Application</description>
     <author email="dev@example.com" href="https://example.com">
-        Rachid
+        Ayoub
     </author>
     <content src="index.html" />
     <access origin="*" />
@@ -13,10 +13,10 @@
     <platform name="android">
         <allow-intent href="market:*" />
         
-        <!-- إعداد الأيقونة الأساسية لتفادي أخطاء AAPT -->
+        <!-- أيقونة التطبيق الأساسية لتفادي أخطاء AAPT -->
         <icon src="www/icon.png" />
         
-        <!-- إعدادات البناء الخاصة بـ Android -->
+        <!-- إعدادات إصدارات الأندرويد -->
         <preference name="android-minSdkVersion" value="24" />
         <preference name="android-targetSdkVersion" value="36" />
     </platform>
