@@ -13,9 +13,6 @@
     <platform name="android">
         <allow-intent href="market:*" />
         
-        <!-- أيقونة التطبيق الأساسية -->
-        <icon src="www/icon.png" />
-        
         <!-- إعدادات إصدارات الأندرويد -->
         <preference name="android-minSdkVersion" value="24" />
         <preference name="android-targetSdkVersion" value="36" />
