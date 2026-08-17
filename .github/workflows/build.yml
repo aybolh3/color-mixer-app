@@ -19,7 +19,7 @@ jobs:
           node-version: '22'
 
       - name: Setup Java JDK
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: 'zulu'
           java-version: '17'
@@ -35,20 +35,15 @@ jobs:
           cordova create app com.aybolh3.colormixer ColorMixer
           cd app
           rm -rf www/*
-          
-          # 1. نسخ ملفات الويب الرئيسية
           cp -r ../* www/ 2>/dev/null || true
           rm -f www/js/index.js www/css/index.css
-
-          # 2. نسخ ملف config.xml والمجلدات إلى مجلد التطبيق
-          cp ../config.xml .
+          cp ../config.xml . 2>/dev/null || true
           cp -r ../mipmap-* . 2>/dev/null || true
-          
           cordova platform add android
           cordova build android --debug
 
       - name: Upload Debug APK
         uses: actions/upload-artifact@v4
         with:
-          name: ColorMixer-APK-Fixed
-          path: app/platforms/android/app/build/outputs/apk/debug/app-debug.apk
+          name: ColorMixer-APK
+          path: '**/app-debug.apk'
