@@ -5,31 +5,29 @@
     <author email="dev@example.com" href="https://example.com">Developer</author>
     
     <content src="index.html" />
+    
+    <!-- إعدادات التوجه والأمان -->
+    <preference name="Orientation" value="portrait" />
+    <preference name="KeepRunning" value="true" />
+    
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
 
-    <!-- أيقونة عامة أساسية -->
-    <icon src="mipmap-xxhdpi/ic_launcher.png" />
+    <!-- أيقونة افتراضية عامة -->
+    <icon src="res/icon/android/drawable-xxhdpi-icon.png" />
 
-    <!-- أيقونات Android -->
+    <!-- منصة أندرويد -->
     <platform name="android">
-        <!-- الأيقونات العادية -->
-        <icon density="mdpi" src="mipmap-mdpi/ic_launcher.png" />
-        <icon density="hdpi" src="mipmap-hdpi/ic_launcher.png" />
-        <icon density="xhdpi" src="mipmap-xhdpi/ic_launcher.png" />
-        <icon density="xxhdpi" src="mipmap-xxhdpi/ic_launcher.png" />
-        <icon density="xxxhdpi" src="mipmap-xxxhdpi/ic_launcher.png" />
-
-        <!-- الأيقونات التكيفية لـ Android 8+ (باستخدام الملف الصحيح) -->
-        <icon density="mdpi" foreground="mipmap-mdpi/adaptive-foreground.png" background="#FFFFFF" />
-        <icon density="hdpi" foreground="mipmap-hdpi/adaptive-foreground.png" background="#FFFFFF" />
-        <icon density="xhdpi" foreground="mipmap-xhdpi/adaptive-foreground.png" background="#FFFFFF" />
-        <icon density="xxhdpi" foreground="mipmap-xxhdpi/adaptive-foreground.png" background="#FFFFFF" />
-        <icon density="xxxhdpi" foreground="mipmap-xxxhdpi/adaptive-foreground.png" background="#FFFFFF" />
+        <!-- الأيقونات القياسية والتكيفية لـ Android -->
+        <icon density="mdpi" src="mipmap-mdpi/ic_launcher.png" foreground="mipmap-mdpi/adaptive-foreground.png" background="#FFFFFF" />
+        <icon density="hdpi" src="mipmap-hdpi/ic_launcher.png" foreground="mipmap-hdpi/adaptive-foreground.png" background="#FFFFFF" />
+        <icon density="xhdpi" src="mipmap-xhdpi/ic_launcher.png" foreground="mipmap-xhdpi/adaptive-foreground.png" background="#FFFFFF" />
+        <icon density="xxhdpi" src="mipmap-xxhdpi/ic_launcher.png" foreground="mipmap-xxhdpi/adaptive-foreground.png" background="#FFFFFF" />
+        <icon density="xxxhdpi" src="mipmap-xxxhdpi/ic_launcher.png" foreground="mipmap-xxxhdpi/adaptive-foreground.png" background="#FFFFFF" />
     </platform>
 
-    <!-- أيقونات iOS -->
+    <!-- منصة iOS -->
     <platform name="ios">
         <icon src="Assets.xcassets/AppIcon.appiconset/20.png" width="20" height="20" />
         <icon src="Assets.xcassets/AppIcon.appiconset/29.png" width="29" height="29" />
