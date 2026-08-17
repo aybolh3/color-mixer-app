@@ -12,6 +12,9 @@
 
     <platform name="android">
         <allow-intent href="market:*" />
+
+       <!-- قم بحذف هذا السطر -->
+        <icon src="www/icon.png" />
         
         <!-- إعدادات إصدارات الأندرويد -->
         <preference name="android-minSdkVersion" value="24" />
