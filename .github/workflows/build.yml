@@ -6,8 +6,8 @@ on:
   workflow_dispatch:
 
 env:
-  # يتجاوز تنبيهات الترقية لـ Node على سيرفرات GitHub
-  ACTIONS_RUNNER_FORCE_NODE24: "true"
+  # إخفاء تنبيه ترقية Node فـ سيرفرات GitHub
+  FORCE_JAVASCRIPT_ACTIONS_ON_NODE24: "true"
 
 jobs:
   build:
