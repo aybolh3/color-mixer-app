@@ -32,23 +32,13 @@ jobs:
       - name: Build APK using Cordova
         run: |
           npm install -g cordova
-          cordova create app com.aybolh3.colormixer ColorMixer
-          cd app
-          rm -rf www/*
           
-          # نسخ ملفات الويب
-          cp -r ../* www/ 2>/dev/null || true
-          rm -f www/js/index.js www/css/index.css
-          
-          # نسخ config.xml
-          cp ../config.xml . 2>/dev/null || true
-          
-          # إنشاء ملف icon.png وهمي في حال عدم وجوده لمنع خطأ Cordova
+          # إنشاء أيقونة افتراضية لمنع أي خطأ مسار فـ Cordova
           touch icon.png
           mkdir -p www
           touch www/icon.png
-          
-          cordova platform add android@12.0.0
+
+          cordova platform add android@12.0.0 --skip-link
           cordova build android --debug
 
       - name: Upload Debug APK
