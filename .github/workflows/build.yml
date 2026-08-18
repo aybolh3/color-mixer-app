@@ -5,6 +5,10 @@ on:
     branches: [ "main", "master" ]
   workflow_dispatch:
 
+env:
+  # يتجاوز تنبيهات الترقية لـ Node على سيرفرات GitHub
+  ACTIONS_RUNNER_FORCE_NODE24: "true"
+
 jobs:
   build:
     runs-on: ubuntu-latest
