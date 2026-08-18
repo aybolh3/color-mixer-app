@@ -35,11 +35,20 @@ jobs:
           cordova create app com.aybolh3.colormixer ColorMixer
           cd app
           rm -rf www/*
+          
+          # نسخ ملفات الويب
           cp -r ../* www/ 2>/dev/null || true
           rm -f www/js/index.js www/css/index.css
+          
+          # نسخ config.xml
           cp ../config.xml . 2>/dev/null || true
-          cp -r ../mipmap-* . 2>/dev/null || true
-          cordova platform add android
+          
+          # إنشاء ملف icon.png وهمي في حال عدم وجوده لمنع خطأ Cordova
+          touch icon.png
+          mkdir -p www
+          touch www/icon.png
+          
+          cordova platform add android@12.0.0
           cordova build android --debug
 
       - name: Upload Debug APK
