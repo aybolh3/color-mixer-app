@@ -17,10 +17,8 @@
     <platform name="android">
         <allow-intent href="market:*" />
 
-        <!-- الأيقونة الاحتياطية -->
+        <!-- أيقونات التطبيق -->
         <icon src="mipmap-xhdpi/ic_launcher.png" />
-
-        <!-- أيقونات Mipmap لجميع الشاشات -->
         <icon src="mipmap-mdpi/ic_launcher.png" density="mdpi" />
         <icon src="mipmap-hdpi/ic_launcher.png" density="hdpi" />
         <icon src="mipmap-xhdpi/ic_launcher.png" density="xhdpi" />
