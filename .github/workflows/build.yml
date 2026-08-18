@@ -33,12 +33,13 @@ jobs:
         run: |
           npm install -g cordova
           
-          # إنشاء أيقونة افتراضية لمنع أي خطأ مسار فـ Cordova
+          # إنشاء أيقونة افتراضية لمنع أخطاء المسارات
           touch icon.png
           mkdir -p www
           touch www/icon.png
 
-          cordova platform add android@12.0.0 --skip-link
+          # استخدام cordova-android المتوافق مع الإصدارات الحديثة
+          cordova platform add android@13.0.0 --skip-link
           cordova build android --debug
 
       - name: Upload Debug APK
