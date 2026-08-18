@@ -1,28 +1,25 @@
-<?xml version='1.0' encoding='utf-8'?>
-<widget id="com.aybolh3.colormixer" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>ColorMixer</name>
-    <description>ColorMixer Application</description>
-    <author email="dev@example.com" href="https://example.com">
-        Ayoub
-    </author>
-    
-    <content src="index.html" />
-    <access origin="*" />
-    <allow-intent href="http://*/*" />
-    <allow-intent href="https://*/*" />
-
-    <preference name="AndroidInsecureFileModeEnabled" value="true" />
-    <preference name="MixedContentMode" value="0" />
-
-    <platform name="android">
+<platform name="android">
         <allow-intent href="market:*" />
-        
-        <icon src="icon.png" />
-        
+
+        <!-- 1. الأيقونة الرئيسية الاحتياطية (Default / Fallback Icon) -->
+        <icon src="mipmap-xhdpi/ic_launcher.png" />
+
+        <!-- 2. أيقونات Mipmap للشاشات المختلفة (Legacy Icons) -->
+        <icon src="mipmap-mdpi/ic_launcher.png" density="mdpi" />
+        <icon src="mipmap-hdpi/ic_launcher.png" density="hdpi" />
+        <icon src="mipmap-xhdpi/ic_launcher.png" density="xhdpi" />
+        <icon src="mipmap-xxhdpi/ic_launcher.png" density="xxhdpi" />
+        <icon src="mipmap-xxxhdpi/ic_launcher.png" density="xxxhdpi" />
+
+        <!-- 3. الأيقونة الذكية للهواتف الحديثة (Adaptive Icon) -->
+        <icon density="ldpi" foreground="mipmap-mdpi/ic_launcher.png" background="#FFFFFF" />
+        <icon density="mdpi" foreground="mipmap-mdpi/ic_launcher.png" background="#FFFFFF" />
+        <icon density="hdpi" foreground="mipmap-hdpi/ic_launcher.png" background="#FFFFFF" />
+        <icon density="xhdpi" foreground="mipmap-xhdpi/ic_launcher.png" background="#FFFFFF" />
+        <icon density="xxhdpi" foreground="mipmap-xxhdpi/ic_launcher.png" background="#FFFFFF" />
+        <icon density="xxxhdpi" foreground="mipmap-xxxhdpi/ic_launcher.png" background="#FFFFFF" />
+
+        <!-- 4. إعدادات إصدارات الأندرويد -->
         <preference name="android-minSdkVersion" value="24" />
         <preference name="android-targetSdkVersion" value="34" />
     </platform>
-
-    <preference name="Fullscreen" value="false" />
-    <preference name="Orientation" value="default" />
-</widget>
