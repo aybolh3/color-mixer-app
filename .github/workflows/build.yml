@@ -32,13 +32,8 @@ jobs:
       - name: Build APK using Cordova
         run: |
           npm install -g cordova
-          
-          # إنشاء أيقونة افتراضية لمنع أخطاء المسارات
-          touch icon.png
-          mkdir -p www
-          touch www/icon.png
 
-          # استخدام cordova-android المتوافق مع الإصدارات الحديثة
+          cordova platform remove android 2>/dev/null || true
           cordova platform add android@13.0.0 --skip-link
           cordova build android --debug
 
