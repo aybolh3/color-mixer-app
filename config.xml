@@ -1,24 +1,26 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.colormixer.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.aybolh3.colormixer" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>ColorMixer</name>
     <description>ColorMixer Application</description>
     <author email="dev@example.com" href="https://example.com">
         Ayoub
     </author>
+    
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
 
+    <preference name="AndroidInsecureFileModeEnabled" value="true" />
+    <preference name="MixedContentMode" value="0" />
+
     <platform name="android">
         <allow-intent href="market:*" />
-
-       <!-- قم بحذف هذا السطر -->
-        <icon src="www/icon.png" />
         
-        <!-- إعدادات إصدارات الأندرويد -->
+        <icon src="icon.png" />
+        
         <preference name="android-minSdkVersion" value="24" />
-        <preference name="android-targetSdkVersion" value="36" />
+        <preference name="android-targetSdkVersion" value="34" />
     </platform>
 
     <preference name="Fullscreen" value="false" />
