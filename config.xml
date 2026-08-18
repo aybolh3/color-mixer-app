@@ -1,15 +1,34 @@
-html::before {
-  content: 'CodePen ♥ The Web';
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  margin: auto;
-  width: fit-content;
-  height: fit-content;
-  font-family: monospace;
-  opacity: 0.6;
-  background: rebeccapurple;
-  color: white;
-  padding: 4px 8px;
-  border-radius: 4px;
-}
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.aybolh3.colormixer" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>ColorMixer</name>
+    <description>ColorMixer Application</description>
+    <author email="dev@example.com" href="https://example.com">
+        Ayoub
+    </author>
+    
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+
+    <preference name="AndroidInsecureFileModeEnabled" value="true" />
+    <preference name="MixedContentMode" value="0" />
+
+    <platform name="android">
+        <allow-intent href="market:*" />
+
+        <!-- أيقونة التطبيق -->
+        <icon src="www/icon.png" />
+        <icon src="mipmap-mdpi/ic_launcher.png" density="mdpi" />
+        <icon src="mipmap-hdpi/ic_launcher.png" density="hdpi" />
+        <icon src="mipmap-xhdpi/ic_launcher.png" density="xhdpi" />
+        <icon src="mipmap-xxhdpi/ic_launcher.png" density="xxhdpi" />
+        <icon src="mipmap-xxxhdpi/ic_launcher.png" density="xxxhdpi" />
+
+        <preference name="android-minSdkVersion" value="24" />
+        <preference name="android-targetSdkVersion" value="34" />
+    </platform>
+
+    <preference name="Fullscreen" value="false" />
+    <preference name="Orientation" value="default" />
+</widget>
