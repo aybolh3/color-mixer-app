@@ -27,15 +27,17 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Build APK using Cordova
+      - name: Build & Package Universal APK
         run: |
           npm install -g cordova
           cordova platform remove android 2>/dev/null || true
           cordova platform add android@13.0.0 --skip-link
           cordova prepare android
-          cordova build android --debug
+          
+          # بناء APK يدعم جميع معالجات الهواتف (ARM64 & ARMv7)
+          cordova build android --debug -- --gradleArg=-PcdvBuildMultipleApks=false
 
-      - name: Upload Debug APK
+      - name: Upload Universal APK
         uses: actions/upload-artifact@v4
         with:
           name: ColorMixer-APK
