@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.aybolh3.colormixerv2" version="1.0.0" ...>
+<widget id="com.aybolh3.colormixerv2" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>ColorMixer</name>
     <description>ColorMixer Application</description>
     <author email="dev@example.com" href="https://example.com">
         Ayoub
@@ -17,7 +18,6 @@
         <allow-intent href="market:*" />
 
         <!-- أيقونة التطبيق -->
-        <icon src="www/icon.png" />
         <icon src="mipmap-mdpi/ic_launcher.png" density="mdpi" />
         <icon src="mipmap-hdpi/ic_launcher.png" density="hdpi" />
         <icon src="mipmap-xhdpi/ic_launcher.png" density="xhdpi" />
