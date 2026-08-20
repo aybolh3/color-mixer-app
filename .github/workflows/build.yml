@@ -50,5 +50,5 @@ jobs:
       - name: Upload Signed APK
         uses: actions/upload-artifact@v4
         with:
-          name: ColorMixer-APK-Signed
-          path: 'ColorMixer-Signed.apk'
+          name: ColorMixer-APK
+          path: 'ColorMixer-APK
