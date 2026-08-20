@@ -17,13 +17,6 @@
     <platform name="android">
         <allow-intent href="market:*" />
 
-        <!-- أيقونة التطبيق -->
-        <icon src="mipmap-mdpi/ic_launcher.png" density="mdpi" />
-        <icon src="mipmap-hdpi/ic_launcher.png" density="hdpi" />
-        <icon src="mipmap-xhdpi/ic_launcher.png" density="xhdpi" />
-        <icon src="mipmap-xxhdpi/ic_launcher.png" density="xxhdpi" />
-        <icon src="mipmap-xxxhdpi/ic_launcher.png" density="xxxhdpi" />
-
         <preference name="android-minSdkVersion" value="24" />
         <preference name="android-targetSdkVersion" value="34" />
     </platform>
