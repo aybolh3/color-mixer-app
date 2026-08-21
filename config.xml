@@ -1,51 +1,38 @@
-name: Build Android APK
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.aybolh3.colormixer" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    
+    <!-- اسم التطبيق والمعلومات الأساسية -->
+    <name>ColorMixer</name>
+    <description>تطبيق استوديو خلط الألوان ومعيار الأغطية</description>
+    <author email="dev@example.com" href="https://github.com/aybolh3">ayb</author>
+    
+    <!-- الصفحة الرئيسية -->
+    <content src="index.html" />
+    
+    <!-- الصلاحيات والتوجيه -->
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-navigation href="*" />
 
-on:
-  push:
-    branches: [ "main", "master" ]
-  pull_request:
-    branches: [ "main", "master" ]
-  workflow_dispatch:
+    <!-- إعدادات منصة الأندرويد والأيقونات -->
+    <platform name="android">
+        <allow-intent href="market:*" />
+        
+        <preference name="AndroidPersistentFileLocation" value="Compatibility" />
+        <preference name="KeepRunning" value="true" />
+        
+        <!-- مسارات الأيقونات الخارجية -->
+        <icon density="hdpi" src="mipmap-hdpi/ic_launcher.png" />
+        <icon density="mdpi" src="mipmap-mdpi/ic_launcher.png" />
+        <icon density="xhdpi" src="mipmap-xhdpi/ic_launcher.png" />
+        <icon density="xxhdpi" src="mipmap-xxhdpi/ic_launcher.png" />
+        <icon density="xxxhdpi" src="mipmap-xxxhdpi/ic_launcher.png" />
+    </platform>
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+    <!-- إعدادات الشاشة والتوجيه -->
+    <preference name="ScrollEnabled" value="false" />
+    <preference name="Orientation" value="portrait" />
+    <preference name="Fullscreen" value="false" />
 
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4.2.2
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v5
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4.2.0
-        with:
-          node-version: '24'
-
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3.2.1
-
-      - name: Install Cordova & Build App
-        run: |
-          npm install -g cordova
-          cordova create tmp_app com.aybolh3.colormixer ColorMixer
-          
-          # نسخ ملفات الموقع والموارد
-          cp -r www/* tmp_app/www/
-          cp config.xml tmp_app/
-          cp -r mipmap-* tmp_app/ 2>/dev/null || true
-          
-          # الدخول والبناء
-          cd tmp_app
-          cordova platform add android
-          cordova build android --debug
-
-      - name: Upload APK Artifact
-        uses: actions/upload-artifact@v4.6.1
-        with:
-          name: ColorMixer-APK
-          path: tmp_app/platforms/android/app/build/outputs/apk/debug/app-debug.apk
+</widget>
