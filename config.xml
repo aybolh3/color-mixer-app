@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.aybolh3.colormixer" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    
+    <!-- اسم التطبيق ووصفه -->
+    <name>ColorMixer</name>
+    <description>تطبيق استوديو خلط الألوان ومعيار الأغطية</description>
+    <author email="dev@example.com" href="https://github.com/aybolh3">Rachid</author>
+    
+    <!-- الصفحة الرئيسية -->
+    <content src="index.html" />
+    
+    <!-- الصلاحيات والوصول -->
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-navigation href="*" />
+
+    <!-- إعدادات منصة الأندرويد -->
+    <platform name="android">
+        <allow-intent href="market:*" />
+        
+        <!-- إعدادات الشاشة والأيقونات -->
+        <preference name="AndroidPersistentFileLocation" value="Compatibility" />
+        <preference name="KeepRunning" value="true" />
+        
+        <!-- مسارات أيقونات التطبيق (mipmap) -->
+        <icon density="ldpi" src="res/icon/android/drawable-ldpi-icon.png" />
+        <icon density="mdpi" src="res/icon/android/drawable-mdpi-icon.png" />
+        <icon density="hdpi" src="res/icon/android/drawable-hdpi-icon.png" />
+        <icon density="xhdpi" src="res/icon/android/drawable-xhdpi-icon.png" />
+        <icon density="xxhdpi" src="res/icon/android/drawable-xxhdpi-icon.png" />
+        <icon density="xxxhdpi" src="res/icon/android/drawable-xxxhdpi-icon.png" />
+    </platform>
+
+    <!-- إعدادات العامة والتوجيه -->
+    <preference name="ScrollEnabled" value="false" />
+    <preference name="Orientation" value="portrait" />
+    <preference name="Fullscreen" value="false" />
+
+</widget>
