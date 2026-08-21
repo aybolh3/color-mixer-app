@@ -4,7 +4,7 @@
     <!-- اسم التطبيق والمعلومات الأساسية -->
     <name>ColorMixer</name>
     <description>تطبيق استوديو خلط الألوان ومعيار الأغطية</description>
-    <author email="dev@example.com" href="https://github.com/aybolh3">Rachid</author>
+    <author email="dev@example.com" href="https://github.com/aybolh3">ayb</author>
     
     <!-- الصفحة الرئيسية -->
     <content src="index.html" />
