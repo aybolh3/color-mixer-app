@@ -15,5 +15,11 @@
     <platform name="android">
         <allow-intent href="market:*" />
         <preference name="Scheme" value="https" />
+        
+        <!-- إخفاء شاشة Splash Screen والرمز الافتراضي -->
+        <preference name="SplashScreen" value="none" />
+        <preference name="SplashScreenDelay" value="0" />
+        <preference name="AutoHideSplashScreen" value="true" />
+        <preference name="AndroidWindowSplashScreenAnimatedIcon" value="icon.png" />
     </platform>
 </widget>
