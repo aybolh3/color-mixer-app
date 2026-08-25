@@ -15,7 +15,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # 2. إعداد البيئة (Node.js 20 و Java JDK 11 المستقرة مع Cordova)
+      # 2. إعداد البيئة (Node.js 20 و Java JDK 17)
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -25,12 +25,12 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
-          java-version: '11'
+          java-version: '17'
 
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      # 3. قبول رخص Android SDK
+      # 3. قبول رخص Android SDK تلقائياً
       - name: Accept Android SDK Licenses
         run: yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
 
@@ -41,11 +41,11 @@ jobs:
           npm install
           cordova platform add android --nosave || true
 
-      # 5. بناء الـ APK وتفعيل التفاصيل (Verbose logging لمعرفة الخطأ)
+      # 5. بناء الـ APK (Release)
       - name: Build Android App (Release)
-        run: cordova build android --release --verbose
+        run: cordova build android --release
 
-      # 6. توقيع ملف الـ APK
+      # 6. توقيع ملف الـ APK (Signing Step)
       - name: Sign Android APK
         id: sign_app
         uses: r0adkll/sign-android-release@v1
@@ -56,7 +56,7 @@ jobs:
           keyStorePassword: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
 
-      # 7. رفع الـ APK الموقّع
+      # 7. رفع الـ APK الموقّع فقط
       - name: Upload Signed APK
         uses: actions/upload-artifact@v4
         with:
