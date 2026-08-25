@@ -30,22 +30,21 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      # 3. قبول رخص Android SDK تلقائياً
+      # 3. قبول رخص Android SDK
       - name: Accept Android SDK Licenses
         run: yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
 
-      # 4. تثبيت Cordova وتهيئتها
-      - name: Install Cordova and Dependencies
+      # 4. تثبيت Cordova عالمياً وإضافة منصة الأندرويد
+      - name: Install Cordova and Setup Platform
         run: |
           npm install -g cordova
-          npm install
           cordova platform add android --nosave || true
 
-      # 5. بناء الـ APK (Release)
+      # 5. بناء ملف الـ APK (Release)
       - name: Build Android App (Release)
         run: cordova build android --release
 
-      # 6. توقيع ملف الـ APK (Signing Step)
+      # 6. توقيع ملف الـ APK
       - name: Sign Android APK
         id: sign_app
         uses: r0adkll/sign-android-release@v1
@@ -56,7 +55,7 @@ jobs:
           keyStorePassword: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
           keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
 
-      # 7. رفع الـ APK الموقّع فقط
+      # 7. رفع ملف الـ APK الموقّع للتحميل
       - name: Upload Signed APK
         uses: actions/upload-artifact@v4
         with:
