@@ -217,24 +217,6 @@
       color: white;
       padding: 4px 10px;
       border-radius: 10px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .cap-img-icon {
-      width: 20px;
-      height: 20px;
-      object-fit: contain;
-      vertical-align: middle;
-    }
-
-    .unit-text-icon {
-      font-weight: 800;
-      font-size: 0.85rem;
-      background: rgba(255, 255, 255, 0.25);
-      padding: 1px 5px;
-      border-radius: 4px;
     }
 
     .scale-controls {
@@ -330,7 +312,7 @@
 
   <header>
     <div class="logo" id="appLogo">
-      استوديو خلط الألوان
+      🧢 استوديو خلط الألوان - معيار الغطاء
     </div>
     
     <div class="header-controls">
@@ -338,20 +320,21 @@
       <div>
         <label style="font-size:0.75rem; color:#64748b; display:block; font-weight:bold;" id="lblLang">اللغة / Language:</label>
         <select id="langSelect" onchange="changeLanguage(this.value)">
-          <option value="ar" selected>العربية</option>
-          <option value="fr">Français</option>
-          <option value="en">English</option>
+          <option value="ar" selected>🌐 العربية</option>
+          <option value="fr">🌐 Français</option>
+          <option value="en">🌐 English</option>
         </select>
       </div>
 
-      <!-- اختيار وحدة القياس -->
+      <!-- اختيار وحدة القياس بالغطاء -->
       <div class="cap-ref-container">
+        <span style="font-size:1.5rem;">🧢</span>
         <div>
           <label style="font-size:0.75rem; color:#64748b; display:block; font-weight:bold;" id="lblUnit">وحدة القياس:</label>
           <select id="unitSelect" onchange="changeUnit(this.value)">
-            <option value="caps" id="optCaps" selected>أغطية صبغة (Caps)</option>
-            <option value="ml" id="optMl">ملليلتر (ml)</option>
-            <option value="g" id="optG">غرام (g)</option>
+            <option value="caps" id="optCaps" selected>🧢 أغطية صبغة (Caps)</option>
+            <option value="ml" id="optMl">🧪 ملليلتر (ml)</option>
+            <option value="g" id="optG">⚖️ غرام (g)</option>
           </select>
         </div>
       </div>
@@ -373,12 +356,13 @@
 
         <!-- التقاط لون المادة -->
         <div class="capture-box">
-          <strong style="display: block; margin-bottom: 8px;" id="titleCapture">التقاط لون المادة:</strong>
+          <strong style="display: block; margin-bottom: 8px;" id="titleCapture">📷 التقاط لون المادة:</strong>
           <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
-            <button class="btn btn-secondary" onclick="useEyeDropper()" id="btnEyedropper">أداة التقاط اللون</button>
+            <button class="btn btn-secondary" onclick="useEyeDropper()" id="btnEyedropper">👁️ أداة التقاط اللون</button>
             
+            <!-- زر الكاميرا ورفع الصور متوافق مع كافة الأجهزة واللغات -->
             <label class="btn btn-secondary" style="cursor: pointer;">
-              <span id="txtUpload">رفع صورة / التقاط</span>
+              <span id="txtUpload">📁 رفع صورة / التقاط</span>
               <input type="file" accept="image/*" capture="environment" id="imageInput" style="display: none;" onchange="handleImageUpload(event)">
             </label>
           </div>
@@ -389,7 +373,7 @@
 
       <section class="card">
         <h2 class="card-title">
-          <span id="titleSaved">الوصفات المحفوظة</span>
+          <span id="titleSaved">💾 الوصفات المحفوظة</span>
         </h2>
         <div style="display: flex; gap: 8px; margin-bottom: 10px;">
           <input type="text" id="recipeNameInput" placeholder="اسم الوصفة..." style="flex: 1;">
@@ -402,8 +386,8 @@
     <div>
       <section class="card">
         <h2 class="card-title">
-          <span id="titleStep2">٢. وصفة القياس والخلط</span>
-          <button class="btn btn-secondary" onclick="window.print()" style="font-size: 0.85rem; padding: 4px 10px;" id="btnPrint">طباعة / PDF</button>
+          <span id="titleStep2">٢. وصفة القياس بالغطاء والخلط</span>
+          <button class="btn btn-secondary" onclick="window.print()" style="font-size: 0.85rem; padding: 4px 10px;" id="btnPrint">🖨️ طباعة / PDF</button>
         </h2>
         
         <div class="preview-box" id="previewBox">
@@ -413,7 +397,7 @@
         <div class="formula-section" id="formulaContainer"></div>
 
         <div class="water-ratio-box">
-          <strong id="lblDilution">المخفف / المذيب المطلوب:</strong> <span id="waterAmount">~0.5 غطاء</span> (<span id="lblRatio">نسبة ١٥٪</span>)
+          💧 <strong id="lblDilution">المخفف / المذيب المطلوب:</strong> <span id="waterAmount">~0.5 غطاء</span> (<span id="lblRatio">نسبة ١٥٪</span>)
         </div>
 
         <!-- التحكم بحجم الدفعة -->
@@ -441,31 +425,31 @@
       ar: {
         dir: 'rtl',
         appTitle: 'استوديو خلط الألوان - مطابق الصبغات',
-        logo: 'استوديو خلط الألوان',
+        logo: '🧢 استوديو خلط الألوان - معيار الغطاء',
         lblLang: 'اللغة:',
         lblUnit: 'وحدة القياس:',
-        optCaps: 'أغطية صبغة (Caps)',
-        optMl: 'ملليلتر (ml)',
-        optG: 'غرام (g)',
+        optCaps: '🧢 أغطية صبغة (Caps)',
+        optMl: '🧪 ملليلتر (ml)',
+        optG: '⚖️ غرام (g)',
         titleStep1: '١. اختيار اللون المطلوب',
         lblCustomColor: 'أو اختر درجة مخصصة:',
-        titleCapture: 'التقاط لون المادة:',
-        btnEyedropper: 'أداة التقاط اللون',
-        lblUpload: 'رفع صورة / التقاط بالكاميرا',
+        titleCapture: '📷 التقاط لون المادة:',
+        btnEyedropper: '👁️ أداة التقاط اللون',
+        lblUpload: '📁 رفع صورة / التقاط بالكاميرا',
         canvasHelpText: 'انقر في أي مكان على الصورة لالتقاط لون الصبغة بالضبط!',
-        titleSaved: 'الوصفات المحفوظة',
+        titleSaved: '💾 الوصفات المحفوظة',
         recipePlaceholder: 'اسم الوصفة...',
         btnSave: 'حفظ',
-        titleStep2: '٢. وصفة القياس والخلط',
-        btnPrint: 'طباعة / PDF',
+        titleStep2: '٢. وصفة القياس بالغطاء والخلط',
+        btnPrint: '🖨️ طباعة / PDF',
         lblDilution: 'المخفف / المذيب المطلوب:',
         lblRatio: 'نسبة ١٥٪',
         lblBatchScale: 'مضاعف الخلطة:',
         lblLiterInput: 'أو حدد حجم الدفعة باللتر (L):',
         unitCaps: 'غطاء',
         unitLiter: 'لتر (L)',
-        unitMl: 'مل',
-        unitG: 'غرام',
+        unitMl: 'مل (ml)',
+        unitG: 'غرام (g)',
         customColorName: 'درجة ملتقطة',
         noSaved: 'لا توجد وصفات محفوظة بعد.',
         btnLoad: 'تحميل',
@@ -487,23 +471,23 @@
       fr: {
         dir: 'ltr',
         appTitle: 'Studio de Mélange de Couleurs',
-        logo: 'Studio de Mélange de Couleurs',
+        logo: '🧢 Studio de Mélange - Mesure par Bouchon',
         lblLang: 'Langue / Language:',
         lblUnit: 'Unité de mesure:',
-        optCaps: 'Bouchons (Caps)',
-        optMl: 'Millilitre (ml)',
-        optG: 'Gramme (g)',
+        optCaps: '🧢 Bouchons (Caps)',
+        optMl: '🧪 Millilitre (ml)',
+        optG: '⚖️ Gramme (g)',
         titleStep1: '1. Sélection de la couleur',
         lblCustomColor: 'Ou choisissez une couleur personnalisée:',
-        titleCapture: 'Capturer la couleur:',
-        btnEyedropper: 'Pipette à écran',
-        lblUpload: 'Importer une photo / Caméra',
+        titleCapture: '📷 Capturer la couleur:',
+        btnEyedropper: '👁️ Pipette à écran',
+        lblUpload: '📁 Importer une photo / Caméra',
         canvasHelpText: 'Cliquez n\'importe où sur l\'image pour capturer la couleur!',
-        titleSaved: 'Recettes enregistrées',
+        titleSaved: '💾 Recettes enregistrées',
         recipePlaceholder: 'Nom de la recette...',
         btnSave: 'Enregistrer',
-        titleStep2: '2. Formule de mélange',
-        btnPrint: 'Imprimer / PDF',
+        titleStep2: '2. Formule de mélange (Bouchons)',
+        btnPrint: '🖨️ Imprimer / PDF',
         lblDilution: 'Diluant requis:',
         lblRatio: 'Ratio de 15%',
         lblBatchScale: 'Multiplicateur de lot:',
@@ -533,23 +517,23 @@
       en: {
         dir: 'ltr',
         appTitle: 'Color Mixing Studio - Pigment Matcher',
-        logo: 'Color Mixing Studio',
+        logo: '🧢 Color Mixing Studio - Cap Measure',
         lblLang: 'Language:',
         lblUnit: 'Measurement Unit:',
-        optCaps: 'Dye Caps',
-        optMl: 'Milliliter (ml)',
-        optG: 'Gram (g)',
+        optCaps: '🧢 Dye Caps',
+        optMl: '🧪 Milliliter (ml)',
+        optG: '⚖️ Gram (g)',
         titleStep1: '1. Select Desired Color',
         lblCustomColor: 'Or pick a custom color:',
-        titleCapture: 'Capture Material Color:',
-        btnEyedropper: 'Color Picker Tool',
-        lblUpload: 'Upload Image / Camera Capture',
+        titleCapture: '📷 Capture Material Color:',
+        btnEyedropper: '👁️ Color Picker Tool',
+        lblUpload: '📁 Upload Image / Camera Capture',
         canvasHelpText: 'Click anywhere on the image to capture the exact pigment color!',
-        titleSaved: 'Saved Recipes',
+        titleSaved: '💾 Saved Recipes',
         recipePlaceholder: 'Recipe Name...',
         btnSave: 'Save',
-        titleStep2: '2. Recipe & Mixing Formula',
-        btnPrint: 'Print / PDF',
+        titleStep2: '2. Cap Recipe & Mixing Formula',
+        btnPrint: '🖨️ Print / PDF',
         lblDilution: 'Required Solvent/Diluent:',
         lblRatio: '15% Ratio',
         lblBatchScale: 'Batch Scale Multiplier:',
@@ -628,7 +612,10 @@
       document.getElementById('lblCustomColor').innerText = t.lblCustomColor;
       document.getElementById('titleCapture').innerText = t.titleCapture;
       document.getElementById('btnEyedropper').innerText = t.btnEyedropper;
+      
+      // تحديث نص رفع الصور/الكاميرا بشكل آمن دون تخريب الـ input
       document.getElementById('txtUpload').innerText = t.lblUpload;
+      
       document.getElementById('canvasHelpText').innerText = t.canvasHelpText;
       document.getElementById('titleSaved').innerText = t.titleSaved;
       document.getElementById('recipeNameInput').placeholder = t.recipePlaceholder;
@@ -733,6 +720,7 @@
       reader.readAsDataURL(file);
     }
 
+    // حساب عدد الأغطية من كود اللون بأمان
     function calculateCapsFromHex(hex) {
       let cleanHex = hex.replace('#', '');
       if (cleanHex.length === 3) {
@@ -787,19 +775,6 @@
       updateRecipeDisplay();
     }
 
-    function getUnitIconHTML() {
-      if (customLiterVolume) {
-        return `<span class="unit-text-icon">L</span>`;
-      }
-      if (currentUnit === 'ml') {
-        return `<span class="unit-text-icon">ml</span>`;
-      }
-      if (currentUnit === 'g') {
-        return `<span class="unit-text-icon">g</span>`;
-      }
-      return `<img src="cap.png" alt="Cap" class="cap-img-icon">`;
-    }
-
     function updateRecipeDisplay() {
       const formulaContainer = document.getElementById('formulaContainer');
       formulaContainer.innerHTML = '';
@@ -837,8 +812,6 @@
           unitText = t.unitG;
         }
 
-        const unitIconHTML = getUnitIconHTML();
-
         const row = document.createElement('div');
         row.className = 'ingredient-row';
         row.innerHTML = `
@@ -846,26 +819,24 @@
             <span class="color-swatch" style="width: 18px; height: 18px; background-color: ${baseHexes[baseKey]};"></span>
             <span>${t.bases[baseKey]}</span>
           </div>
-          <span class="cap-count-badge">${unitIconHTML} ${displayValue} ${unitText}</span>
+          <span class="cap-count-badge">🧢 ${displayValue} ${unitText}</span>
         `;
         formulaContainer.appendChild(row);
       });
 
       const waterVal = totalBaseUnits * 0.15;
       let waterUnit;
-      const unitIconHTML = getUnitIconHTML();
-
       if (customLiterVolume) {
-        waterUnit = `${unitIconHTML} ${(customLiterVolume * 0.15).toFixed(3)} ${t.unitLiter}`;
+        waterUnit = `${(customLiterVolume * 0.15).toFixed(3)} ${t.unitLiter}`;
       } else if (currentUnit === 'ml') {
-        waterUnit = `${unitIconHTML} ${(waterVal * 5).toFixed(1)} ${t.unitMl}`;
+        waterUnit = `${(waterVal * 5).toFixed(1)} ${t.unitMl}`;
       } else if (currentUnit === 'g') {
-        waterUnit = `${unitIconHTML} ${(waterVal * 5).toFixed(1)} ${t.unitG}`;
+        waterUnit = `${(waterVal * 5).toFixed(1)} ${t.unitG}`;
       } else {
-        waterUnit = `${unitIconHTML} ${waterVal.toFixed(1)} ${t.unitCaps}`;
+        waterUnit = `${waterVal.toFixed(1)} ${t.unitCaps}`;
       }
 
-      document.getElementById('waterAmount').innerHTML = `~${waterUnit}`;
+      document.getElementById('waterAmount').innerText = `~${waterUnit}`;
     }
 
     function saveCurrentRecipe() {
