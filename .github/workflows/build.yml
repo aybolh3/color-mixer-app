@@ -2,24 +2,20 @@ name: Build and Sign Android APK
 
 on:
   push:
-    branches:
-      - main
-  workflow_dispatch:
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. سحب الكود من المستودع
-      - name: Checkout Repository
+      - name: Checkout Code
         uses: actions/checkout@v4
 
-      # 2. إعداد البيئة (Node.js 20 و Java JDK 17)
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: 20
 
       - name: Setup Java JDK
         uses: actions/setup-java@v4
@@ -30,34 +26,33 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      # 3. قبول رخص Android SDK
-      - name: Accept Android SDK Licenses
-        run: yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
+      - name: Install Cordova
+        run: npm install -g cordova
 
-      # 4. تثبيت Cordova عالمياً وإضافة منصة الأندرويد
-      - name: Install Cordova and Setup Platform
-        run: |
-          npm install -g cordova
-          cordova platform add android --nosave || true
+      - name: Install Project Dependencies
+        run: npm install
 
-      # 5. بناء ملف الـ APK (Release)
-      - name: Build Android App (Release)
+      - name: Add Android Platform
+        run: cordova platform add android
+
+      # 1️⃣ خطوة البناء: تأكد أن --release مكتوبة
+      - name: Build Android Release APK
         run: cordova build android --release
 
-      # 6. توقيع ملف الـ APK
-      - name: Sign Android APK
-        id: sign_app
+      # 2️⃣ خطوة التوقيع: المسار الصحيح للـ APK
+      - name: Sign APK
         uses: r0adkll/sign-android-release@v1
+        id: sign_app
         with:
           releaseDirectory: platforms/android/app/build/outputs/apk/release
-          signingKeyBase64: ${{ secrets.ANDROID_SIGNING_KEY }}
-          alias: ${{ secrets.ANDROID_ALIAS }}
-          keyStorePassword: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
-          keyPassword: ${{ secrets.ANDROID_KEY_PASSWORD }}
+          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+          alias: ${{ secrets.ALIAS }}
+          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
 
-      # 7. رفع ملف الـ APK الموقّع للتحميل
+      # 3️⃣ حفظ ملف الـ APK النهائي للمعاينة والتحميل
       - name: Upload Signed APK
         uses: actions/upload-artifact@v4
         with:
-          name: Signed-App-APK
+          name: app-release-signed
           path: ${{ steps.sign_app.outputs.signedReleaseFile }}
