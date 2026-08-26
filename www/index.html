@@ -70,7 +70,7 @@
         <div>
           <label style="font-size:0.75rem; color:#64748b; display:block; font-weight:bold;" id="lblUnit">وحدة القياس:</label>
           <select id="unitSelect" onchange="changeUnit(this.value)">
-            <option value="caps" id="optCaps" selected>🧢 معيار الغطاء (Caps)</option>
+            <option value="caps" id="optCaps" selected>🧢 معيار الأغطية (Caps)</option>
             <option value="ml" id="optMl">🧪 ملليلتر (ml)</option>
             <option value="g" id="optG">⚖️ غرام (g)</option>
           </select>
@@ -131,13 +131,13 @@
         </h2>
         
         <div class="preview-box" id="previewBox">
-          <span id="previewName">تركواز</span>
+          <span id="previewName">🧢 تركواز</span>
         </div>
 
         <div class="formula-section" id="formulaContainer"></div>
 
         <div class="water-ratio-box">
-          💧 <strong id="lblDilution">المخفف / المذيب المطلوب:</strong> <span id="waterAmount">~0.5 وحدة</span> (<span id="lblRatio">نسبة ١٥٪</span>)
+          💧 <strong id="lblDilution">المخفف / المذيب المطلوب:</strong> <span id="waterAmount">~0.5 أغطية 🧢</span> (<span id="lblRatio">نسبة ١٥٪</span>)
         </div>
 
         <div class="scale-controls">
@@ -161,9 +161,9 @@
 
   <script>
     const i18n = {
-      ar: { dir: 'rtl', appTitle: 'استوديو خلط الألوان - مطابق الصبغات', logo: '🎨 استوديو خلط الألوان', lblLang: 'اللغة:', lblUnit: 'وحدة القياس:', optCaps: '🧢 معيار الغطاء (Caps)', optMl: '🧪 ملليلتر (ml)', optG: '⚖️ غرام (g)', titleStep1: '١. اختيار اللون المطلوب', lblCustomColor: 'أو اختر درجة مخصصة:', titleCapture: '📷 التقاط لون المادة:', btnEyedropper: '👁️ أداة التقاط اللون', lblUpload: '📁 رفع صورة / التقاط بالكاميرا', canvasHelpText: 'انقر في أي مكان على الصورة لالتقاط لون الصبغة بالضبط!', titleSaved: '💾 الوصفات المحفوظة', recipePlaceholder: 'اسم الوصفة...', btnSave: 'حفظ', titleStep2: '٢. وصفة القياس والخلط', btnPrint: '🖨️ طباعة / PDF', lblDilution: 'المخفف / المذيب المطلوب:', lblRatio: 'نسبة ١٥٪', lblBatchScale: 'مضاعف الخلطة:', lblLiterInput: 'أو حدد حجم الدفعة باللتر (L):', unitCaps: 'غطاء', unitLiter: 'لتر (L)', unitMl: 'مل (ml)', unitG: 'غرام (g)', customColorName: 'درجة ملتقطة', noSaved: 'لا توجد وصفات محفوظة بعد.', btnLoad: 'تحميل', presets: { mint: 'أخضر نعناعي', turquoise: 'تركواز', terracotta: 'تيراكوتا', lavender: 'خزامى', peach: 'خوخي' }, bases: { white: 'قاعدة / صبغة بيضاء', blue: 'مركز أزرق', yellow: 'مركز أصفر', red: 'مركز أحمر', black: 'مركز أسود' } },
-      fr: { dir: 'ltr', appTitle: 'Studio de Mélange de Couleurs', logo: '🎨 Studio de Mélange', lblLang: 'Langue / Language:', lblUnit: 'Unité de mesure:', optCaps: '🧢 Bouchons (Caps)', optMl: '🧪 Millilitre (ml)', optG: '⚖️ Gramme (g)', titleStep1: '1. Sélection de la couleur', lblCustomColor: 'Ou choisissez une couleur personnalisée:', titleCapture: '📷 Capturer la couleur:', btnEyedropper: '👁️ Pipette à écran', lblUpload: '📁 Importer une photo / Caméra', canvasHelpText: 'Cliquez n\'importe où sur l\'image pour capturer la couleur!', titleSaved: '💾 Recettes enregistrées', recipePlaceholder: 'Nom de la recette...', btnSave: 'Enregistrer', titleStep2: '2. Formule de mélange', btnPrint: '🖨️ Imprimer / PDF', lblDilution: 'Diluant requis:', lblRatio: 'Ratio de 15%', lblBatchScale: 'Multiplicateur de lot:', lblLiterInput: 'Ou volume de lot en Litres (L):', unitCaps: 'bouchon(s)', unitLiter: 'Litre (L)', unitMl: 'ml', unitG: 'g', customColorName: 'Couleur capturée', noSaved: 'Aucune recette enregistrée pour le moment.', btnLoad: 'Charger', presets: { mint: 'Vert Menthe', turquoise: 'Turquoise', terracotta: 'Terre Cuite', lavender: 'Lavande', peach: 'Pêche' }, bases: { white: 'Base / Pigment Blanc', blue: 'Concentré Bleu', yellow: 'Concentré Jaune', red: 'Concentré Rouge', black: 'Concentré Noir' } },
-      en: { dir: 'ltr', appTitle: 'Color Mixing Studio - Pigment Matcher', logo: '🎨 Color Mixing Studio', lblLang: 'Language:', lblUnit: 'Measurement Unit:', optCaps: '🧢 Bottle Caps (Caps)', optMl: '🧪 Milliliter (ml)', optG: '⚖️ Gram (g)', titleStep1: '1. Select Desired Color', lblCustomColor: 'Or pick a custom color:', titleCapture: '📷 Capture Material Color:', btnEyedropper: '👁️ Color Picker Tool', lblUpload: '📁 Upload Image / Camera Capture', canvasHelpText: 'Click anywhere on the image to capture the exact pigment color!', titleSaved: '💾 Saved Recipes', recipePlaceholder: 'Recipe Name...', btnSave: 'Save', titleStep2: '2. Mixing Formula', btnPrint: '🖨️ Print / PDF', lblDilution: 'Required Solvent/Diluent:', lblRatio: '15% Ratio', lblBatchScale: 'Batch Scale Multiplier:', lblLiterInput: 'Or specify batch volume in Liters (L):', unitCaps: 'cap(s)', unitLiter: 'Liter (L)', unitMl: 'ml', unitG: 'g', customColorName: 'Captured Color', noSaved: 'No saved recipes yet.', btnLoad: 'Load', presets: { mint: 'Mint Green', turquoise: 'Turquoise', terracotta: 'Terracotta', lavender: 'Lavender', peach: 'Peach' }, bases: { white: 'White Base / Pigment', blue: 'Blue Concentrate', yellow: 'Yellow Concentrate', red: 'Red Concentrate', black: 'Black Concentrate' } }
+      ar: { dir: 'rtl', appTitle: 'استوديو خلط الألوان - مطابق الصبغات', logo: '🎨 استوديو خلط الألوان', lblLang: 'اللغة:', lblUnit: 'وحدة القياس:', optCaps: '🧢 معيار الأغطية (Caps)', optMl: '🧪 ملليلتر (ml)', optG: '⚖️ غرام (g)', titleStep1: '١. اختيار اللون المطلوب', lblCustomColor: 'أو اختر درجة مخصصة:', titleCapture: '📷 التقاط لون المادة:', btnEyedropper: '👁️ أداة التقاط اللون', lblUpload: '📁 رفع صورة / التقاط بالكاميرا', canvasHelpText: 'انقر في أي مكان على الصورة لالتقاط لون الصبغة بالضبط!', titleSaved: '💾 الوصفات المحفوظة', recipePlaceholder: 'اسم الوصفة...', btnSave: 'حفظ', titleStep2: '٢. وصفة القياس والخلط', btnPrint: '🖨️ طباعة / PDF', lblDilution: 'المخفف / المذيب المطلوب:', lblRatio: 'نسبة ١٥٪', lblBatchScale: 'مضاعف الخلطة:', lblLiterInput: 'أو حدد حجم الدفعة باللتر (L):', unitCaps: 'أغطية 🧢', unitLiter: 'لتر (L)', unitMl: 'مل (ml)', unitG: 'غرام (g)', customColorName: 'درجة ملتقطة', noSaved: 'لا توجد وصفات محفوظة بعد.', btnLoad: 'تحميل', presets: { mint: 'أخضر نعناعي', turquoise: 'تركواز', terracotta: 'تيراكوتا', lavender: 'خزامى', peach: 'خوخي' }, bases: { white: 'قاعدة / صبغة بيضاء', blue: 'مركز أزرق', yellow: 'مركز أصفر', red: 'مركز أحمر', black: 'مركز أسود' } },
+      fr: { dir: 'ltr', appTitle: 'Studio de Mélange de Couleurs', logo: '🎨 Studio de Mélange', lblLang: 'Langue / Language:', lblUnit: 'Unité de mesure:', optCaps: '🧢 Bouchons (Caps)', optMl: '🧪 Millilitre (ml)', optG: '⚖️ Gramme (g)', titleStep1: '1. Sélection de la couleur', lblCustomColor: 'Ou choisissez une couleur personnalisée:', titleCapture: '📷 Capturer la couleur:', btnEyedropper: '👁️ Pipette à écran', lblUpload: '📁 Importer une photo / Caméra', canvasHelpText: 'Cliquez n\'importe où sur l\'image pour capturer la couleur!', titleSaved: '💾 Recettes enregistrées', recipePlaceholder: 'Nom de la recette...', btnSave: 'Enregistrer', titleStep2: '2. Formule de mélange', btnPrint: '🖨️ Imprimer / PDF', lblDilution: 'Diluant requis:', lblRatio: 'Ratio de 15%', lblBatchScale: 'Multiplicateur de lot:', lblLiterInput: 'Ou volume de lot en Litres (L):', unitCaps: 'bouchon(s) 🧢', unitLiter: 'Litre (L)', unitMl: 'ml', unitG: 'g', customColorName: 'Couleur capturée', noSaved: 'Aucune recette enregistrée pour le moment.', btnLoad: 'Charger', presets: { mint: 'Vert Menthe', turquoise: 'Turquoise', terracotta: 'Terre Cuite', lavender: 'Lavande', peach: 'Pêche' }, bases: { white: 'Base / Pigment Blanc', blue: 'Concentré Bleu', yellow: 'Concentré Jaune', red: 'Concentré Rouge', black: 'Concentré Noir' } },
+      en: { dir: 'ltr', appTitle: 'Color Mixing Studio - Pigment Matcher', logo: '🎨 Color Mixing Studio', lblLang: 'Language:', lblUnit: 'Measurement Unit:', optCaps: '🧢 Bottle Caps (Caps)', optMl: '🧪 Milliliter (ml)', optG: '⚖️ Gram (g)', titleStep1: '1. Select Desired Color', lblCustomColor: 'Or pick a custom color:', titleCapture: '📷 Capture Material Color:', btnEyedropper: '👁️ Color Picker Tool', lblUpload: '📁 Upload Image / Camera Capture', canvasHelpText: 'Click anywhere on the image to capture the exact pigment color!', titleSaved: '💾 Saved Recipes', recipePlaceholder: 'Recipe Name...', btnSave: 'Save', titleStep2: '2. Mixing Formula', btnPrint: '🖨️ Print / PDF', lblDilution: 'Required Solvent/Diluent:', lblRatio: '15% Ratio', lblBatchScale: 'Batch Scale Multiplier:', lblLiterInput: 'Or specify batch volume in Liters (L):', unitCaps: 'cap(s) 🧢', unitLiter: 'Liter (L)', unitMl: 'ml', unitG: 'g', customColorName: 'Captured Color', noSaved: 'No saved recipes yet.', btnLoad: 'Load', presets: { mint: 'Mint Green', turquoise: 'Turquoise', terracotta: 'Terracotta', lavender: 'Lavender', peach: 'Peach' }, bases: { white: 'White Base / Pigment', blue: 'Blue Concentrate', yellow: 'Yellow Concentrate', red: 'Red Concentrate', black: 'Black Concentrate' } }
     };
 
     let currentLang = 'ar';
@@ -314,7 +314,7 @@
       previewBox.style.backgroundColor = currentHex;
       const t = i18n[currentLang];
       const displayName = isCustom ? `${t.customColorName} (${currentHex.toUpperCase()})` : t.presets[activePreset.id];
-      document.getElementById('previewName').innerText = displayName;
+      document.getElementById('previewName').innerHTML = `🧢 ${displayName}`;
       updateRecipeDisplay();
     }
 
