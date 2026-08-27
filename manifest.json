@@ -1,0 +1,17 @@
+{
+  "name": "Color Mixing Studio",
+  "short_name": "ColorStudio",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4f46e5",
+  "description": "Smart app for color mixing and dye matching.",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
