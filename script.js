@@ -1,10 +1,12 @@
 const i18n = {
-  ar: { dir: 'rtl', appTitle: 'استوديو خلط الألوان - مطابق الصبغات', logo: '🎨 استوديو خلط الألوان', lblLang: 'اللغة:', lblUnit: 'وحدة القياس:', optCaps: '🧢 معيار الأغطية (Caps)', optMl: '🧪 ملليلتر (ml)', optG: '⚖️ غرام (g)', titleStep1: '١. اختيار اللون المطلوب', lblCustomColor: 'أو اختر درجة مخصصة:', titleCapture: '📷 التقاط لون المادة:', btnEyedropper: '👁️ أداة التقاط اللون', lblUpload: '📁 رفع صورة / التقاط بالكاميرا', canvasHelpText: 'انقر في أي مكان على الصورة لالتقاط لون الصبغة بالضبط!', titleSaved: '💾 الوصفات المحفوظة', recipePlaceholder: 'اسم الوصفة...', btnSave: 'حفظ', titleStep2: '٢. وصفة القياس والخلط', btnPrint: '🖨️ طباعة / PDF', lblDilution: 'المخفف / المذيب المطلوب:', lblRatio: 'نسبة ١٥٪', lblBatchScale: 'مضاعف الخلطة:', lblLiterInput: 'أو حدد حجم الدفعة باللتر (L):', unitCaps: 'أغطية 🧢', unitLiter: 'لتر (L)', unitMl: 'مل (ml)', unitG: 'غرام (g)', customColorName: 'درجة ملتقطة', noSaved: 'لا توجد وصفات محفوظة بعد.', btnLoad: 'تحميل', presets: { mint: 'أخضر نعناعي', turquoise: 'تركواز', terracotta: 'تيراكوتا', lavender: 'خزامى', peach: 'خوخي' }, bases: { white: 'قاعدة / صبغة بيضاء', blue: 'مركز أزرق', yellow: 'مركز أصفر', red: 'مركز أحمر', black: 'مركز أسود' } },
-  fr: { dir: 'ltr', appTitle: 'Studio de Mélange de Couleurs', logo: '🎨 Studio de Mélange', lblLang: 'Langue / Language:', lblUnit: 'Unité de mesure:', optCaps: '🧢 Bouchons (Caps)', optMl: '🧪 Millilitre (ml)', optG: '⚖️ Gramme (g)', titleStep1: '1. Sélection de la couleur', lblCustomColor: 'Ou choisissez une couleur personnalisée:', titleCapture: '📷 Capturer la couleur:', btnEyedropper: '👁️ Pipette à écran', lblUpload: '📁 Importer une photo / Caméra', canvasHelpText: 'Cliquez n\'importe où sur l\'image pour capturer la couleur!', titleSaved: '💾 Recettes enregistrées', recipePlaceholder: 'Nom de la recette...', btnSave: 'Enregistrer', titleStep2: '2. Formule de mélange', btnPrint: '🖨️ Imprimer / PDF', lblDilution: 'Diluant requis:', lblRatio: 'Ratio de 15%', lblBatchScale: 'Multiplicateur de lot:', lblLiterInput: 'Ou volume de lot en Litres (L):', unitCaps: 'bouchon(s) 🧢', unitLiter: 'Litre (L)', unitMl: 'ml', unitG: 'g', customColorName: 'Couleur capturée', noSaved: 'Aucune recette enregistrée pour le moment.', btnLoad: 'Charger', presets: { mint: 'Vert Menthe', turquoise: 'Turquoise', terracotta: 'Terre Cuite', lavender: 'Lavande', peach: 'Pêche' }, bases: { white: 'Base / Pigment Blanc', blue: 'Concentré Bleu', yellow: 'Concentré Jaune', red: 'Concentré Rouge', black: 'Concentré Noir' } },
-  en: { dir: 'ltr', appTitle: 'Color Mixing Studio - Pigment Matcher', logo: '🎨 Color Mixing Studio', lblLang: 'Language:', lblUnit: 'Measurement Unit:', optCaps: '🧢 Bottle Caps (Caps)', optMl: '🧪 Milliliter (ml)', optG: '⚖️ Gram (g)', titleStep1: '1. Select Desired Color', lblCustomColor: 'Or pick a custom color:', titleCapture: '📷 Capture Material Color:', btnEyedropper: '👁️ Color Picker Tool', lblUpload: '📁 Upload Image / Camera Capture', canvasHelpText: 'Click anywhere on the image to capture the exact pigment color!', titleSaved: '💾 Saved Recipes', recipePlaceholder: 'Recipe Name...', btnSave: 'Save', titleStep2: '2. Mixing Formula', btnPrint: '🖨️ Print / PDF', lblDilution: 'Required Solvent/Diluent:', lblRatio: '15% Ratio', lblBatchScale: 'Batch Scale Multiplier:', lblLiterInput: 'Or specify batch volume in Liters (L):', unitCaps: 'cap(s) 🧢', unitLiter: 'Liter (L)', unitMl: 'ml', unitG: 'g', customColorName: 'Captured Color', noSaved: 'No saved recipes yet.', btnLoad: 'Load', presets: { mint: 'Mint Green', turquoise: 'Turquoise', terracotta: 'Terracotta', lavender: 'Lavender', peach: 'Peach' }, bases: { white: 'White Base / Pigment', blue: 'Blue Concentrate', yellow: 'Yellow Concentrate', red: 'Red Concentrate', black: 'Black Concentrate' } }
+  ar: { dir: 'rtl', appTitle: 'استوديو خلط الألوان - مطابق الصبغات', logo: 'استوديو خلط الألوان', lblLang: 'اللغة:', lblUnit: 'وحدة القياس:', optCaps: 'معيار الأغطية (Caps)', optMl: '🧪 ملليلتر (ml)', optG: '⚖️ غرام (g)', titleStep1: '١. اختيار اللون المطلوب', lblCustomColor: 'أو اختر درجة مخصصة:', titleCapture: '📷 التقاط لون المادة:', btnEyedropper: '👁️ أداة التقاط اللون', lblUpload: '📁 رفع صورة / التقاط بالكاميرا', canvasHelpText: 'انقر في أي مكان على الصورة لالتقاط لون الصبغة بالضبط!', titleSaved: '💾 الوصفات المحفوظة', recipePlaceholder: 'اسم الوصفة...', btnSave: 'حفظ', titleStep2: '٢. وصفة القياس والخلط', btnPrint: '🖨️ طباعة / PDF', lblDilution: 'المخفف / المذيب المطلوب:', lblRatio: 'نسبة ١٥٪', lblBatchScale: 'مضاعف الخلطة:', lblLiterInput: 'أو حدد حجم الدفعة باللتر (L):', unitCaps: 'أغطية', unitLiter: 'لتر (L)', unitMl: 'مل (ml)', unitG: 'غرام (g)', customColorName: 'درجة ملتقطة', noSaved: 'لا توجد وصفات محفوظة بعد.', btnLoad: 'تحميل', presets: { mint: 'أخضر نعناعي', turquoise: 'تركواز', terracotta: 'تيراكوتا', lavender: 'خزامى', peach: 'خوخي' }, bases: { white: 'قاعدة / صبغة بيضاء', blue: 'مركز أزرق', yellow: 'مركز أصفر', red: 'مركز أحمر', black: 'مركز أسود' } },
+  fr: { dir: 'ltr', appTitle: 'Studio de Mélange de Couleurs', logo: 'Studio de Mélange de Couleurs', lblLang: 'Langue / Language:', lblUnit: 'Unité de mesure:', optCaps: 'Bouchons (Caps)', optMl: '🧪 Millilitre (ml)', optG: '⚖️ Gramme (g)', titleStep1: '1. Sélection de la couleur', lblCustomColor: 'Ou choisissez une couleur personnalisée:', titleCapture: '📷 Capturer la couleur:', btnEyedropper: '👁️ Pipette à écran', lblUpload: '📁 Importer une photo / Caméra', canvasHelpText: 'Cliquez n\'importe où sur l\'image pour capturer la couleur!', titleSaved: '💾 Recettes enregistrées', recipePlaceholder: 'Nom de la recette...', btnSave: 'Enregistrer', titleStep2: '2. Formule de mélange', btnPrint: '🖨️ Imprimer / PDF', lblDilution: 'Diluant requis:', lblRatio: 'Ratio de 15%', lblBatchScale: 'Multiplicateur de lot:', lblLiterInput: 'Ou volume de lot en Litres (L):', unitCaps: 'bouchon(s)', unitLiter: 'Litre (L)', unitMl: 'ml', unitG: 'g', customColorName: 'Couleur capturée', noSaved: 'Aucune recette enregistrée pour le moment.', btnLoad: 'Charger', presets: { mint: 'Vert Menthe', turquoise: 'Turquoise', terracotta: 'Terre Cuite', lavender: 'Lavande', peach: 'Pêche' }, bases: { white: 'Base / Pigment Blanc', blue: 'Concentré Bleu', yellow: 'Concentré Jaune', red: 'Concentré Rouge', black: 'Concentré Noir' } },
+  en: { dir: 'ltr', appTitle: 'Color Mixing Studio - Pigment Matcher', logo: 'Color Mixing Studio', lblLang: 'Language:', lblUnit: 'Measurement Unit:', optCaps: 'Bottle Caps (Caps)', optMl: '🧪 Milliliter (ml)', optG: '⚖️ Gram (g)', titleStep1: '1. Select Desired Color', lblCustomColor: 'Or pick a custom color:', titleCapture: '📷 Capture Material Color:', btnEyedropper: '👁️ Color Picker Tool', lblUpload: '📁 Upload Image / Camera Capture', canvasHelpText: 'Click anywhere on the image to capture the exact pigment color!', titleSaved: '💾 Saved Recipes', recipePlaceholder: 'Recipe Name...', btnSave: 'Save', titleStep2: '2. Mixing Formula', btnPrint: '🖨️ Print / PDF', lblDilution: 'Required Solvent/Diluent:', lblRatio: '15% Ratio', lblBatchScale: 'Batch Scale Multiplier:', lblLiterInput: 'Or specify batch volume in Liters (L):', unitCaps: 'cap(s)', unitLiter: 'Liter (L)', unitMl: 'ml', unitG: 'g', customColorName: 'Captured Color', noSaved: 'No saved recipes yet.', btnLoad: 'Load', presets: { mint: 'Mint Green', turquoise: 'Turquoise', terracotta: 'Terracotta', lavender: 'Lavender', peach: 'Peach' }, bases: { white: 'White Base / Pigment', blue: 'Blue Concentrate', yellow: 'Yellow Concentrate', red: 'Red Concentrate', black: 'Black Concentrate' } }
 };
 
-let currentLang = 'ar';
+// إعداد اللغة الافتراضية لتكون الفرنسية مباشرة
+let currentLang = 'fr';
+
 const presets = [
   { id: 'mint', hex: '#98ff98', recipe: { white: 5, yellow: 2, blue: 1 } },
   { id: 'turquoise', hex: '#40e0d0', recipe: { white: 4, blue: 3, yellow: 1 } },
@@ -24,7 +26,15 @@ let savedRecipes = JSON.parse(localStorage.getItem('my_color_mixes') || '[]');
 
 const baseHexes = { white: '#ffffff', blue: '#2563eb', yellow: '#eab308', red: '#ef4444', black: '#1e293b' };
 
-function init() { applyLanguage(currentLang); renderPresets(); renderSavedRecipes(); updateUI(); }
+function init() {
+  const langSelect = document.getElementById('langSelect');
+  if (langSelect) langSelect.value = currentLang;
+  applyLanguage(currentLang);
+  renderPresets();
+  renderSavedRecipes();
+  updateUI();
+}
+
 function changeLanguage(lang) { currentLang = lang; applyLanguage(lang); renderPresets(); renderSavedRecipes(); updateUI(); }
 
 function applyLanguage(lang) {
@@ -152,7 +162,7 @@ function updateUI() {
   previewBox.style.backgroundColor = currentHex;
   const t = i18n[currentLang];
   const displayName = isCustom ? `${t.customColorName} (${currentHex.toUpperCase()})` : t.presets[activePreset.id];
-  document.getElementById('previewName').innerHTML = `🧢 ${displayName}`;
+  document.getElementById('previewName').innerText = displayName;
   updateRecipeDisplay();
 }
 
@@ -224,82 +234,48 @@ function deleteRecipe(index) {
   renderSavedRecipes();
 }
 
-function exportRecipes() {
-  if (savedRecipes.length === 0) {
-    alert("لا توجد وصفات محفوظة لتصديرها.");
-    return;
-  }
-  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(savedRecipes, null, 2));
-  const downloadAnchor = document.createElement('a');
-  downloadAnchor.setAttribute("href", dataStr);
-  downloadAnchor.setAttribute("download", "color_recipes_backup.json");
-  document.body.appendChild(downloadAnchor);
-  downloadAnchor.click();
-  downloadAnchor.remove();
-}
-
-function importRecipes(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    try {
-      const imported = JSON.parse(e.target.result);
-      if (Array.isArray(imported)) {
-        savedRecipes = imported;
-        localStorage.setItem('my_color_mixes', JSON.stringify(savedRecipes));
-        renderSavedRecipes();
-        alert("تم استيراد الوصفات بنجاح!");
-      }
-    } catch (err) {
-      alert("خطأ في قراءة ملف JSON.");
-    }
-  };
-  reader.readAsText(file);
-}
-
 window.onload = init;
-// ==================== ميزة الخلط الدائري المخصص ====================
 
-// دالة مسح لون معين
+// ==================== ميزة الخلط الدائري المخصص (شعار مرسيدس) ====================
+
 function clearColor(id) {
   const el = document.getElementById(id);
   if (el) {
-    el.value = '#ffffff'; // إرجاع اللون للون الأبيض (بدون تأثير)
+    el.value = '#ffffff';
     updateCustomTripleMix();
   }
 }
 
-// دالة حساب وخلط الألوان الثلاثة وتحديث دائرة النتيجة والتطبيق
 function updateCustomTripleMix() {
   const c1 = document.getElementById('mixColor1')?.value || '#ffffff';
   const c2 = document.getElementById('mixColor2')?.value || '#ffffff';
   const c3 = document.getElementById('mixColor3')?.value || '#ffffff';
 
+  const mercedesCircle = document.getElementById('mercedesCircle');
+  if (mercedesCircle) {
+    mercedesCircle.style.background = `conic-gradient(${c1} 0deg 120deg, ${c2} 120deg 240deg, ${c3} 240deg 360deg)`;
+  }
+
   const rgb1 = hexToRgb(c1);
   const rgb2 = hexToRgb(c2);
   const rgb3 = hexToRgb(c3);
 
-  // حساب متوسط قيم RGB للألوان الثلاثة
   const r = Math.round((rgb1.r + rgb2.r + rgb3.r) / 3);
   const g = Math.round((rgb1.g + rgb2.g + rgb3.g) / 3);
   const b = Math.round((rgb1.b + rgb2.b + rgb3.b) / 3);
 
   const mixedHex = rgbToHex(r, g, b);
 
-  // تحديث لون خلفية دائرة النتيجة
   const resultCircle = document.getElementById('mixResultCircle');
   if (resultCircle) {
     resultCircle.style.backgroundColor = mixedHex;
   }
 
-  // ربط النتيجة مع باقي وظائف التطبيق
   if (typeof handleCustomColor === 'function') {
     handleCustomColor(mixedHex);
   }
 }
 
-// تحويل HEX إلى RGB
 function hexToRgb(hex) {
   let c = hex.replace('#', '');
   if (c.length === 3) c = c.split('').map(x => x + x).join('');
@@ -311,40 +287,10 @@ function hexToRgb(hex) {
   };
 }
 
-// تحويل RGB إلى HEX
 function rgbToHex(r, g, b) {
   return '#' + [r, g, b].map(x => x.toString(16).padStart(2, '0')).join('');
 }
 
-// تصدير البيانات إلى ملف JSON
-function exportRecipes() {
-  const data = localStorage.getItem('savedRecipes') || '[]';
-  const blob = new Blob([data], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'recipes.json';
-  a.click();
-}
-
-// استيراد بيانات الوصفات
-function importRecipes(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    try {
-      localStorage.setItem('savedRecipes', e.target.result);
-      if (typeof loadSavedRecipes === 'function') loadSavedRecipes();
-      alert('تم استيراد البيانات بنجاح!');
-    } catch (err) {
-      alert('حدث خطأ أثناء استيراد الملف');
-    }
-  };
-  reader.readAsText(file);
-}
-
-// تشغيل الخلط فور تحميل الصفحة
 document.addEventListener('DOMContentLoaded', () => {
   if (document.getElementById('mixColor1')) {
     updateCustomTripleMix();
