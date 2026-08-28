@@ -259,3 +259,94 @@ function importRecipes(event) {
 }
 
 window.onload = init;
+// ==================== ميزة الخلط الدائري المخصص ====================
+
+// دالة مسح لون معين
+function clearColor(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.value = '#ffffff'; // إرجاع اللون للون الأبيض (بدون تأثير)
+    updateCustomTripleMix();
+  }
+}
+
+// دالة حساب وخلط الألوان الثلاثة وتحديث دائرة النتيجة والتطبيق
+function updateCustomTripleMix() {
+  const c1 = document.getElementById('mixColor1')?.value || '#ffffff';
+  const c2 = document.getElementById('mixColor2')?.value || '#ffffff';
+  const c3 = document.getElementById('mixColor3')?.value || '#ffffff';
+
+  const rgb1 = hexToRgb(c1);
+  const rgb2 = hexToRgb(c2);
+  const rgb3 = hexToRgb(c3);
+
+  // حساب متوسط قيم RGB للألوان الثلاثة
+  const r = Math.round((rgb1.r + rgb2.r + rgb3.r) / 3);
+  const g = Math.round((rgb1.g + rgb2.g + rgb3.g) / 3);
+  const b = Math.round((rgb1.b + rgb2.b + rgb3.b) / 3);
+
+  const mixedHex = rgbToHex(r, g, b);
+
+  // تحديث لون خلفية دائرة النتيجة
+  const resultCircle = document.getElementById('mixResultCircle');
+  if (resultCircle) {
+    resultCircle.style.backgroundColor = mixedHex;
+  }
+
+  // ربط النتيجة مع باقي وظائف التطبيق
+  if (typeof handleCustomColor === 'function') {
+    handleCustomColor(mixedHex);
+  }
+}
+
+// تحويل HEX إلى RGB
+function hexToRgb(hex) {
+  let c = hex.replace('#', '');
+  if (c.length === 3) c = c.split('').map(x => x + x).join('');
+  const num = parseInt(c, 16);
+  return {
+    r: (num >> 16) & 255,
+    g: (num >> 8) & 255,
+    b: num & 255
+  };
+}
+
+// تحويل RGB إلى HEX
+function rgbToHex(r, g, b) {
+  return '#' + [r, g, b].map(x => x.toString(16).padStart(2, '0')).join('');
+}
+
+// تصدير البيانات إلى ملف JSON
+function exportRecipes() {
+  const data = localStorage.getItem('savedRecipes') || '[]';
+  const blob = new Blob([data], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'recipes.json';
+  a.click();
+}
+
+// استيراد بيانات الوصفات
+function importRecipes(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      localStorage.setItem('savedRecipes', e.target.result);
+      if (typeof loadSavedRecipes === 'function') loadSavedRecipes();
+      alert('تم استيراد البيانات بنجاح!');
+    } catch (err) {
+      alert('حدث خطأ أثناء استيراد الملف');
+    }
+  };
+  reader.readAsText(file);
+}
+
+// تشغيل الخلط فور تحميل الصفحة
+document.addEventListener('DOMContentLoaded', () => {
+  if (document.getElementById('mixColor1')) {
+    updateCustomTripleMix();
+  }
+});
