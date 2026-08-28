@@ -31,7 +31,7 @@
         <div>
           <label style="font-size:0.75rem; color:#64748b; display:block; font-weight:bold;" id="lblUnit">وحدة القياس:</label>
           <select id="unitSelect" onchange="changeUnit(this.value)">
-            <option value="caps" id="optCaps" selected>🧢 معيار الأغطية (Caps)</option>
+            <option value="caps" id="optCaps" selected>معيار الأغطية (Caps)</option>
             <option value="ml" id="optMl">🧪 ملليلتر (ml)</option>
             <option value="g" id="optG">⚖️ غرام (g)</option>
           </select>
@@ -46,32 +46,31 @@
         <h2 class="card-title" id="titleStep1">١. اختيار اللون المطلوب</h2>
         <div class="preset-grid" id="presetContainer"></div>
         
-        <!-- قسم خلط 3 ألوان مع أزرار الحذف والمعاينة -->
+        <!-- قسم شعار مرسيدس وناتج الخلط -->
         <div style="margin-top: 15px;">
-          <label style="font-weight: 600; display: block; margin-bottom: 12px;" id="lblCustomColor">أو اختر درجة مخصصة (خلط 3 ألوان):</label>
+          <label style="font-weight: 600; display: block; margin-bottom: 12px;" id="lblCustomColor">أو اختر درجة مخصصة:</label>
           
-          <div class="custom-mixer-wrapper" style="display: flex; gap: 15px; align-items: center; justify-content: center; padding: 10px 0;">
-            <!-- الدائرة الأولى: اختيار الألوان مع أزرار المسح -->
-            <div class="circle-box input-circle" style="width: 140px; height: 140px; border-radius: 50%; background: #f1f5f9; border: 2px dashed #cbd5e1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
-              <span style="font-size: 0.75rem; color: #475569; font-weight: bold;">اختر 3 ألوان</span>
-              <div style="display: flex; gap: 6px; align-items: center;">
-                
-                <div style="position: relative;">
-                  <input type="color" id="mixColor1" value="#ff0000" style="width: 28px; height: 28px; border: none; background: none; cursor: pointer;" oninput="updateCustomTripleMix()">
-                  <button type="button" onclick="clearColor('mixColor1')" style="position: absolute; top: -5px; right: -5px; background: #ef4444; color: white; border: none; border-radius: 50%; width: 15px; height: 15px; font-size: 9px; cursor: pointer; display: flex; align-items: center; justify-content: center; line-height: 1;">✕</button>
-                </div>
-                
-                <div style="position: relative;">
-                  <input type="color" id="mixColor2" value="#00ff00" style="width: 28px; height: 28px; border: none; background: none; cursor: pointer;" oninput="updateCustomTripleMix()">
-                  <button type="button" onclick="clearColor('mixColor2')" style="position: absolute; top: -5px; right: -5px; background: #ef4444; color: white; border: none; border-radius: 50%; width: 15px; height: 15px; font-size: 9px; cursor: pointer; display: flex; align-items: center; justify-content: center; line-height: 1;">✕</button>
-                </div>
-
-                <div style="position: relative;">
-                  <input type="color" id="mixColor3" value="#0000ff" style="width: 28px; height: 28px; border: none; background: none; cursor: pointer;" oninput="updateCustomTripleMix()">
-                  <button type="button" onclick="clearColor('mixColor3')" style="position: absolute; top: -5px; right: -5px; background: #ef4444; color: white; border: none; border-radius: 50%; width: 15px; height: 15px; font-size: 9px; cursor: pointer; display: flex; align-items: center; justify-content: center; line-height: 1;">✕</button>
-                </div>
-
+          <div class="custom-mixer-wrapper" style="display: flex; gap: 20px; align-items: center; justify-content: center; padding: 10px 0;">
+            
+            <!-- الدائرة الأولى: مقسمة لـ 3 أجزاء كشعار مرسيدس -->
+            <div id="mercedesCircle" class="circle-box" style="width: 140px; height: 140px; border-radius: 50%; border: 3px solid #cbd5e1; position: relative; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); background: conic-gradient(#ff0000 0deg 120deg, #00ff00 120deg 240deg, #0000ff 240deg 360deg);">
+              
+              <!-- محددات الألوان و أزرار المسح مع أداة الاختيار فوق الأجزاء -->
+              <div style="position: absolute; top: 18px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 2px;">
+                <input type="color" id="mixColor1" value="#ff0000" style="width: 24px; height: 24px; border: none; background: transparent; cursor: pointer;" oninput="updateCustomTripleMix()">
+                <button type="button" onclick="clearColor('mixColor1')" style="background: #ef4444; color: white; border: none; border-radius: 50%; width: 14px; height: 14px; font-size: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; line-height: 1;">✕</button>
               </div>
+              
+              <div style="position: absolute; bottom: 20px; left: 18px; display: flex; align-items: center; gap: 2px;">
+                <input type="color" id="mixColor2" value="#00ff00" style="width: 24px; height: 24px; border: none; background: transparent; cursor: pointer;" oninput="updateCustomTripleMix()">
+                <button type="button" onclick="clearColor('mixColor2')" style="background: #ef4444; color: white; border: none; border-radius: 50%; width: 14px; height: 14px; font-size: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; line-height: 1;">✕</button>
+              </div>
+
+              <div style="position: absolute; bottom: 20px; right: 18px; display: flex; align-items: center; gap: 2px;">
+                <input type="color" id="mixColor3" value="#0000ff" style="width: 24px; height: 24px; border: none; background: transparent; cursor: pointer;" oninput="updateCustomTripleMix()">
+                <button type="button" onclick="clearColor('mixColor3')" style="background: #ef4444; color: white; border: none; border-radius: 50%; width: 14px; height: 14px; font-size: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; line-height: 1;">✕</button>
+              </div>
+
             </div>
 
             <span style="font-size: 1.2rem; color: #64748b; font-weight: bold;">➔</span>
@@ -80,6 +79,7 @@
             <div id="mixResultCircle" class="circle-box output-circle" style="width: 140px; height: 140px; border-radius: 50%; background-color: #808080; border: 3px solid #ffffff; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.15); transition: background-color 0.2s ease;">
               <span style="font-size: 0.85rem; color: #ffffff; font-weight: bold; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">النتيجة</span>
             </div>
+
           </div>
         </div>
 
@@ -106,14 +106,6 @@
           <button class="btn" onclick="saveCurrentRecipe()" id="btnSave">حفظ</button>
         </div>
         <div class="saved-list" id="savedListContainer"></div>
-
-        <div style="display: flex; gap: 8px; margin-top: 15px; padding-top: 10px; border-top: 1px solid #e2e8f0;">
-          <button class="btn btn-secondary" style="flex: 1; font-size: 0.8rem;" onclick="exportRecipes()" id="btnExport">📥 تصدير البيانات (JSON)</button>
-          <label class="btn btn-secondary" style="flex: 1; font-size: 0.8rem; cursor: pointer; text-align: center;" id="lblImport">
-            📤 استيراد بيانات
-            <input type="file" accept=".json" style="display: none;" onchange="importRecipes(event)">
-          </label>
-        </div>
       </section>
     </div>
 
@@ -124,14 +116,15 @@
           <button class="btn btn-secondary" onclick="window.print()" style="font-size: 0.85rem; padding: 4px 10px;" id="btnPrint">🖨️ طباعة / PDF</button>
         </h2>
         
+        <!-- صندوق المعاينة بدقة بدون كاب -->
         <div class="preview-box" id="previewBox" style="padding: 12px; border-radius: 8px; text-align: center; font-weight: bold; margin-bottom: 12px; border: 1px solid #cbd5e1;">
-          <span id="previewName"> تركواز</span>
+          <span id="previewName">تركواز</span>
         </div>
 
         <div class="formula-section" id="formulaContainer"></div>
 
         <div class="water-ratio-box" style="margin-top: 12px; background: #f0fdf4; padding: 10px; border-radius: 8px; border: 1px solid #bbf7d0;">
-          💧 <strong id="lblDilution">المخفف / المذيب المطلوب:</strong> <span id="waterAmount">~0.5 أغطية 🧢</span> (<span id="lblRatio">نسبة ١٥٪</span>)
+          💧 <strong id="lblDilution">المخفف / المذيب المطلوب:</strong> <span id="waterAmount">~0.5</span> (<span id="lblRatio">نسبة ١٥٪</span>)
         </div>
 
         <div class="scale-controls" style="margin-top: 15px;">
