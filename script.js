@@ -73,7 +73,7 @@ const i18n = {
     logo: 'Color Mixing Studio', 
     lblLang: 'Language:', 
     lblUnit: 'Measurement Unit:', 
-    optCaps: 'Bottle Caps'🧢,
+    optCaps: '🧢 Bottle Caps', 
     optMl: '🧪 Milliliter (ml)', 
     optG: '⚖️ Gram (g)', 
     titleStep1: '1. Select Desired Color', 
@@ -289,4 +289,125 @@ function updateRecipeDisplay() {
 
     const row = document.createElement('div');
     row.className = 'ingredient-row';
-    row.innerHTML = `<div class="ingredient-info"><span class="color-swatch" style="width: 18px; height: 18px; background-color:
+    row.innerHTML = `<div class="ingredient-info"><span class="color-swatch" style="width: 18px; height: 18px; background-color: ${baseHexes[baseKey]};"></span><span>${t.bases[baseKey]}</span></div><span class="cap-count-badge">${displayValue} ${unitText}</span>`;
+    formulaContainer.appendChild(row);
+  });
+
+  const waterVal = totalBaseUnits * 0.15;
+  let waterUnit = customLiterVolume ? `${(customLiterVolume * 0.15).toFixed(3)} ${t.unitLiter}` : (currentUnit === 'ml' || currentUnit === 'g') ? `${(waterVal * 5).toFixed(1)} ${currentUnit}` : `${waterVal.toFixed(1)} ${t.unitCaps}`;
+  document.getElementById('waterAmount').innerText = `~${waterUnit}`;
+}
+
+function saveCurrentRecipe() {
+  const nameInput = document.getElementById('recipeNameInput');
+  const t = i18n[currentLang];
+  const name = nameInput.value.trim() || `${t.recipePlaceholder.replace('...', '')} ${savedRecipes.length + 1}`;
+  savedRecipes.push({ name, hex: currentHex, recipe: currentRecipe });
+  localStorage.setItem('my_color_mixes', JSON.stringify(savedRecipes));
+  nameInput.value = '';
+  renderSavedRecipes();
+}
+
+function renderSavedRecipes() {
+  const container = document.getElementById('savedListContainer');
+  const t = i18n[currentLang];
+  container.innerHTML = savedRecipes.length === 0 ? `<p style="font-size: 0.85rem; color: #94a3b8;">${t.noSaved}</p>` : '';
+  savedRecipes.forEach((item, index) => {
+    const div = document.createElement('div');
+    div.className = 'saved-item';
+    div.innerHTML = `<div style="display:flex; align-items:center; gap:8px;"><div style="width:16px; height:16px; border-radius:50%; background:${item.hex};"></div><strong>${item.name}</strong></div><div><button class="btn btn-secondary" style="padding: 2px 8px; font-size:0.75rem;" onclick="loadRecipe(${index})">${t.btnLoad}</button> <button class="btn btn-secondary" style="padding: 2px 8px; font-size:0.75rem; color:red;" onclick="deleteRecipe(${index})">✕</button></div>`;
+    container.appendChild(div);
+  });
+}
+
+function loadRecipe(index) {
+  const item = savedRecipes[index];
+  isCustom = true; currentHex = item.hex; currentRecipe = item.recipe;
+  renderPresets(); updateUI();
+}
+
+function deleteRecipe(index) {
+  savedRecipes.splice(index, 1);
+  localStorage.setItem('my_color_mixes', JSON.stringify(savedRecipes));
+  renderSavedRecipes();
+}
+
+window.onload = init;
+
+// ==================== ميزة الخلط الدائري المخصص (شعار مرسيدس) ====================
+
+function handleCircleClick(event) {
+  const rect = event.currentTarget.getBoundingClientRect();
+  const x = event.clientX - rect.left - rect.width / 2;
+  const y = event.clientY - rect.top - rect.height / 2;
+  
+  let angle = Math.atan2(y, x) * (180 / Math.PI) + 90;
+  if (angle < 0) angle += 360;
+
+  if (angle >= 0 && angle < 120) {
+    document.getElementById('mixColor1').click();
+  } else if (angle >= 120 && angle < 240) {
+    document.getElementById('mixColor3').click();
+  } else {
+    document.getElementById('mixColor2').click();
+  }
+}
+
+function clearColor(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.value = '#ffffff';
+    updateCustomTripleMix();
+  }
+}
+
+function updateCustomTripleMix() {
+  const c1 = document.getElementById('mixColor1')?.value || '#ffffff';
+  const c2 = document.getElementById('mixColor2')?.value || '#ffffff';
+  const c3 = document.getElementById('mixColor3')?.value || '#ffffff';
+
+  const mercedesCircle = document.getElementById('mercedesCircle');
+  if (mercedesCircle) {
+    mercedesCircle.style.background = `conic-gradient(${c1} 0deg 120deg, ${c3} 120deg 240deg, ${c2} 240deg 360deg)`;
+  }
+
+  const rgb1 = hexToRgb(c1);
+  const rgb2 = hexToRgb(c2);
+  const rgb3 = hexToRgb(c3);
+
+  const r = Math.round((rgb1.r + rgb2.r + rgb3.r) / 3);
+  const g = Math.round((rgb1.g + rgb2.g + rgb3.g) / 3);
+  const b = Math.round((rgb1.b + rgb2.b + rgb3.b) / 3);
+
+  const mixedHex = rgbToHex(r, g, b);
+
+  const resultCircle = document.getElementById('mixResultCircle');
+  if (resultCircle) {
+    resultCircle.style.backgroundColor = mixedHex;
+  }
+
+  if (typeof handleCustomColor === 'function') {
+    handleCustomColor(mixedHex);
+  }
+}
+
+function hexToRgb(hex) {
+  let c = hex.replace('#', '');
+  if (c.length === 3) c = c.split('').map(x => x + x).join('');
+  const num = parseInt(c, 16);
+  return {
+    r: (num >> 16) & 255,
+    g: (num >> 8) & 255,
+    b: num & 255
+  };
+}
+
+function rgbToHex(r, g, b) {
+  return '#' + [r, g, b].map(x => x.toString(16).padStart(2, '0')).join('');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (document.getElementById('mixColor1')) {
+    updateCustomTripleMix();
+  }
+});
