@@ -42,3 +42,14 @@ select:focus, input[type="text"]:focus, input[type="number"]:focus { border-colo
 .saved-list { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
 .saved-item { display: flex; justify-content: space-between; align-items: center; background: #f8fafc; padding: 8px 12px; border-radius: 8px; border: 1px solid #e2e8f0; }
 #imageCanvas { max-width: 100%; border-radius: 8px; margin: 10px auto 0 auto; cursor: crosshair; display: none; }
+
+/* ==================== إعدادات الطباعة الدقيقة ==================== */
+@media print {
+  body { background: white !important; padding: 0 !important; }
+  header, .capture-box, .saved-list, .preset-grid, .header-controls, #titleStep1, #titleSaved { display: none !important; }
+  body * { visibility: hidden; }
+  .main-container, .main-container * { visibility: visible; }
+  .card:has(#previewBox), #previewBox, #previewBox *, #mixResultCircle, #mixResultCircle *, #formulaContainer, #formulaContainer * { visibility: visible !important; }
+  .scale-controls, .btn, button, input, select { display: none !important; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+}
