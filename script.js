@@ -334,7 +334,7 @@ function deleteRecipe(index) {
 
 window.onload = init;
 
-// ==================== ميزة الخلط الدائري المخصص (شعار مرسيدس) ====================
+// ==================== ميزة الخلط الدائري المخصص (SVG المقسم) ====================
 
 function handleCircleClick(event) {
   const rect = event.currentTarget.getBoundingClientRect();
@@ -344,12 +344,13 @@ function handleCircleClick(event) {
   let angle = Math.atan2(y, x) * (180 / Math.PI) + 90;
   if (angle < 0) angle += 360;
 
+  // تحديد الجزء المضغوط عليه بناءً على التقسيم المائل لدائرة SVG
   if (angle >= 0 && angle < 120) {
-    document.getElementById('mixColor1').click();
+    document.getElementById('mixColor1').click(); // الجزء الأول (يمين أعلى)
   } else if (angle >= 120 && angle < 240) {
-    document.getElementById('mixColor3').click();
+    document.getElementById('mixColor2').click(); // الجزء الثاني (أسفل)
   } else {
-    document.getElementById('mixColor2').click();
+    document.getElementById('mixColor3').click(); // الجزء الثالث (يسار أعلى)
   }
 }
 
@@ -366,11 +367,16 @@ function updateCustomTripleMix() {
   const c2 = document.getElementById('mixColor2')?.value || '#ffffff';
   const c3 = document.getElementById('mixColor3')?.value || '#ffffff';
 
-  const mercedesCircle = document.getElementById('mercedesCircle');
-  if (mercedesCircle) {
-    mercedesCircle.style.background = `conic-gradient(${c1} 0deg 120deg, ${c3} 120deg 240deg, ${c2} 240deg 360deg)`;
-  }
+  // تحديث ألوان مسارات SVG الثلاثة بشكل مباشر
+  const part1 = document.getElementById('svgPart1');
+  const part2 = document.getElementById('svgPart2');
+  const part3 = document.getElementById('svgPart3');
 
+  if (part1) part1.setAttribute('fill', c1);
+  if (part2) part2.setAttribute('fill', c2);
+  if (part3) part3.setAttribute('fill', c3);
+
+  // حساب درجة اللون المختلطة الناتجة
   const rgb1 = hexToRgb(c1);
   const rgb2 = hexToRgb(c2);
   const rgb3 = hexToRgb(c3);
@@ -381,6 +387,7 @@ function updateCustomTripleMix() {
 
   const mixedHex = rgbToHex(r, g, b);
 
+  // تحديث دائرة النتيجة واحتساب نسب القياس
   const resultCircle = document.getElementById('mixResultCircle');
   if (resultCircle) {
     resultCircle.style.backgroundColor = mixedHex;
