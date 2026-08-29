@@ -60,9 +60,17 @@
               <input type="color" id="mixColor2" value="#ffffff" style="display:none;" onchange="updateCustomTripleMix()">
               <input type="color" id="mixColor3" value="#ffffff" style="display:none;" onchange="updateCustomTripleMix()">
 
-              <!-- الدائرة المقسمة لـ 3 أجزاء (تُقبل النقر المباشر) -->
-              <div id="mercedesCircle" onclick="handleCircleClick(event)" style="width: 140px; height: 140px; border-radius: 50%; border: 3px solid #cbd5e1; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); background: conic-gradient(#ffffff 0deg 120deg, #ffffff 120deg 240deg, #ffffff 240deg 360deg); cursor: pointer;">
-              </div>
+              <!-- الدائرة المقسمة بـ SVG بالأسود والبيضاء (تُقبل النقر المباشر) -->
+              <svg id="mercedesCircle" onclick="handleCircleClick(event)" width="140" height="140" viewBox="0 0 100 100" style="border-radius: 50%; border: 3px solid #000000; box-shadow: 0 4px 6px rgba(0,0,0,0.15); background: #ffffff; cursor: pointer;">
+                <!-- الثلث الأول (يمين أعلى) -->
+                <path id="svgPart1" d="M 50 50 L 50 0 A 50 50 0 0 1 93.3 75 Z" fill="#ffffff" stroke="#000000" stroke-width="2" />
+                
+                <!-- الثلث الثاني (الأسفل) -->
+                <path id="svgPart2" d="M 50 50 L 93.3 75 A 50 50 0 0 1 6.7 75 Z" fill="#ffffff" stroke="#000000" stroke-width="2" />
+                
+                <!-- الثلث الثالث (يسار أعلى) -->
+                <path id="svgPart3" d="M 50 50 L 6.7 75 A 50 50 0 0 1 50 0 Z" fill="#ffffff" stroke="#000000" stroke-width="2" />
+              </svg>
 
               <!-- أزرار الحذف الخارجية (✕) المحددة التموضع -->
               <button type="button" onclick="clearColor('mixColor1')" title="Effacer la couleur 1" style="position: absolute; top: -8px; left: 50%; transform: translateX(-50%); background: #ef4444; color: white; border: 2px solid white; border-radius: 50%; width: 24px; height: 24px; font-size: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.2); z-index: 10;">✕</button>
@@ -146,7 +154,7 @@
     </div>
   </main>
 
-  <!-- تحديث النسخة لإجبار المتصفح على تحميل ملف script.js الجديد -->
-  <script src="script.js?v=3.1"></script>
+  <!-- إجبار تحميل أحدث نسخة من script.js -->
+  <script src="script.js?v=3.2"></script>
 </body>
 </html>
