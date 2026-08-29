@@ -131,6 +131,9 @@ function init() {
   renderPresets();
   renderSavedRecipes();
   updateUI();
+
+  const printBtn = document.getElementById('btnPrint');
+  if (printBtn) printBtn.onclick = () => window.print();
 }
 
 function changeLanguage(lang) { currentLang = lang; applyLanguage(lang); renderPresets(); renderSavedRecipes(); updateUI(); }
@@ -167,6 +170,7 @@ function changeUnit(unit) { currentUnit = unit; updateRecipeDisplay(); }
 
 function renderPresets() {
   const container = document.getElementById('presetContainer');
+  if (!container) return;
   container.innerHTML = '';
   const t = i18n[currentLang];
   presets.forEach(preset => {
@@ -243,9 +247,11 @@ function calculateCapsFromHex(hex) {
 
 function adjustScale(delta) {
   customLiterVolume = null;
-  document.getElementById('literInput').value = '';
+  const literInput = document.getElementById('literInput');
+  if (literInput) literInput.value = '';
   batchScale = Math.max(1, Math.min(100, batchScale + delta));
-  document.getElementById('scaleFactor').innerText = `${batchScale}x`;
+  const scaleFactor = document.getElementById('scaleFactor');
+  if (scaleFactor) scaleFactor.innerText = `${batchScale}x`;
   updateRecipeDisplay();
 }
 
@@ -257,15 +263,22 @@ function handleLiterInput(val) {
 
 function updateUI() {
   const previewBox = document.getElementById('previewBox');
-  previewBox.style.backgroundColor = currentHex;
+  if (previewBox) previewBox.style.backgroundColor = currentHex;
+  
+  const resultCircle = document.getElementById('mixResultCircle');
+  if (resultCircle) resultCircle.style.backgroundColor = currentHex;
+
   const t = i18n[currentLang];
   const displayName = isCustom ? `${t.customColorName} (${currentHex.toUpperCase()})` : t.presets[activePreset.id];
-  document.getElementById('previewName').innerText = displayName;
+  const previewName = document.getElementById('previewName');
+  if (previewName) previewName.innerText = displayName;
+  
   updateRecipeDisplay();
 }
 
 function updateRecipeDisplay() {
   const formulaContainer = document.getElementById('formulaContainer');
+  if (!formulaContainer) return;
   formulaContainer.innerHTML = '';
   const t = i18n[currentLang];
   let totalBaseUnits = 0;
@@ -295,7 +308,8 @@ function updateRecipeDisplay() {
 
   const waterVal = totalBaseUnits * 0.15;
   let waterUnit = customLiterVolume ? `${(customLiterVolume * 0.15).toFixed(3)} ${t.unitLiter}` : (currentUnit === 'ml' || currentUnit === 'g') ? `${(waterVal * 5).toFixed(1)} ${currentUnit}` : `${waterVal.toFixed(1)} ${t.unitCaps}`;
-  document.getElementById('waterAmount').innerText = `~${waterUnit}`;
+  const waterAmount = document.getElementById('waterAmount');
+  if (waterAmount) waterAmount.innerText = `~${waterUnit}`;
 }
 
 function saveCurrentRecipe() {
@@ -310,6 +324,7 @@ function saveCurrentRecipe() {
 
 function renderSavedRecipes() {
   const container = document.getElementById('savedListContainer');
+  if (!container) return;
   const t = i18n[currentLang];
   container.innerHTML = savedRecipes.length === 0 ? `<p style="font-size: 0.85rem; color: #94a3b8;">${t.noSaved}</p>` : '';
   savedRecipes.forEach((item, index) => {
@@ -334,8 +349,6 @@ function deleteRecipe(index) {
 
 window.onload = init;
 
-// ==================== ميزة الخلط الدائري المخصص (SVG المقسم) ====================
-
 function handleCircleClick(event) {
   const rect = event.currentTarget.getBoundingClientRect();
   const x = event.clientX - rect.left - rect.width / 2;
@@ -344,13 +357,12 @@ function handleCircleClick(event) {
   let angle = Math.atan2(y, x) * (180 / Math.PI) + 90;
   if (angle < 0) angle += 360;
 
-  // تحديد الجزء المضغوط عليه بناءً على التقسيم المائل لدائرة SVG
   if (angle >= 0 && angle < 120) {
-    document.getElementById('mixColor1').click(); // الجزء الأول (يمين أعلى)
+    document.getElementById('mixColor1')?.click();
   } else if (angle >= 120 && angle < 240) {
-    document.getElementById('mixColor2').click(); // الجزء الثاني (أسفل)
+    document.getElementById('mixColor2')?.click();
   } else {
-    document.getElementById('mixColor3').click(); // الجزء الثالث (يسار أعلى)
+    document.getElementById('mixColor3')?.click();
   }
 }
 
@@ -367,7 +379,6 @@ function updateCustomTripleMix() {
   const c2 = document.getElementById('mixColor2')?.value || '#ffffff';
   const c3 = document.getElementById('mixColor3')?.value || '#ffffff';
 
-  // تحديث ألوان مسارات SVG الثلاثة بشكل مباشر
   const part1 = document.getElementById('svgPart1');
   const part2 = document.getElementById('svgPart2');
   const part3 = document.getElementById('svgPart3');
@@ -376,7 +387,6 @@ function updateCustomTripleMix() {
   if (part2) part2.setAttribute('fill', c2);
   if (part3) part3.setAttribute('fill', c3);
 
-  // حساب درجة اللون المختلطة الناتجة
   const rgb1 = hexToRgb(c1);
   const rgb2 = hexToRgb(c2);
   const rgb3 = hexToRgb(c3);
@@ -387,15 +397,7 @@ function updateCustomTripleMix() {
 
   const mixedHex = rgbToHex(r, g, b);
 
-  // تحديث دائرة النتيجة واحتساب نسب القياس
-  const resultCircle = document.getElementById('mixResultCircle');
-  if (resultCircle) {
-    resultCircle.style.backgroundColor = mixedHex;
-  }
-
-  if (typeof handleCustomColor === 'function') {
-    handleCustomColor(mixedHex);
-  }
+  handleCustomColor(mixedHex);
 }
 
 function hexToRgb(hex) {
