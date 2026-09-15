@@ -25,6 +25,12 @@ jobs:
       - name: Install Cordova
         run: npm install -g cordova
 
+      - name: Prepare Cordova Project Structure
+        run: |
+          mkdir -p www
+          cp -r index.html script.js style.css manifest.json sw.js icon.png www/ 2>/dev/null || true
+          cp -r assets www/ 2>/dev/null || true
+
       - name: Add Android Platform & Build AAB
         run: |
           cordova platform add android
