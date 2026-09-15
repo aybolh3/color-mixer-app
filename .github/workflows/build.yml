@@ -1,4 +1,5 @@
-name: Build Android Signed AAB
+
+name: Build Android Signed AAB & Export Cert
 
 on:
   push:
@@ -36,13 +37,16 @@ jobs:
           cordova platform add android
           cordova build android --release -- --packageType=bundle
 
-      - name: Generate Keystore & Sign AAB
+      - name: Generate Keystore, Sign AAB & Export PEM
         run: |
           keytool -genkey -v -keystore release.keystore -alias releasekey -keyalg RSA -keysize 2048 -validity 10000 -storepass mypassword -keypass mypassword -dname "CN=Ayoub, OU=Dev, O=App, L=City, S=State, C=MA"
           jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore release.keystore -storepass mypassword platforms/android/app/build/outputs/bundle/release/app-release.aab releasekey
+          keytool -export -rfc -keystore release.keystore -alias releasekey -file upload_certificate.pem -storepass mypassword
 
-      - name: Upload Signed AAB Artifact
+      - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: app-release-signed-aab
-          path: platforms/android/app/build/outputs/bundle/release/app-release.aab
+          name: app-release-and-cert
+          path: |
+            platforms/android/app/build/outputs/bundle/release/app-release.aab
+            upload_certificate.pem
