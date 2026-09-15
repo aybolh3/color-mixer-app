@@ -14,19 +14,16 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20'
 
       - name: Setup Java
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Install Cordova & Android Build Tools
-        run: |
-          npm install -g cordova
-          sudo apt-get update
-          sudo apt-get install -y openjdk-17-jdk android-sdk
+      - name: Install Cordova
+        run: npm install -g cordova
 
       - name: Prepare Cordova Project Structure
         run: |
@@ -42,8 +39,6 @@ jobs:
       - name: Generate Keystore & Sign AAB
         run: |
           keytool -genkey -v -keystore release.keystore -alias releasekey -keyalg RSA -keysize 2048 -validity 10000 -storepass mypassword -keypass mypassword -dname "CN=Ayoub, OU=Dev, O=App, L=City, S=State, C=MA"
-          
-          # توقيع ملف الـ AAB باستخدام jarsigner
           jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore release.keystore -storepass mypassword platforms/android/app/build/outputs/bundle/release/app-release.aab releasekey
 
       - name: Upload Signed AAB Artifact
