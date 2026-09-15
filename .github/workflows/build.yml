@@ -1,4 +1,4 @@
-name: Build Android AAB
+name: Build Android Signed AAB
 
 on:
   push:
@@ -22,8 +22,11 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Install Cordova
-        run: npm install -g cordova
+      - name: Install Cordova & Android Build Tools
+        run: |
+          npm install -g cordova
+          sudo apt-get update
+          sudo apt-get install -y openjdk-17-jdk android-sdk
 
       - name: Prepare Cordova Project Structure
         run: |
@@ -36,8 +39,15 @@ jobs:
           cordova platform add android
           cordova build android --release -- --packageType=bundle
 
-      - name: Upload AAB Artifact
+      - name: Generate Keystore & Sign AAB
+        run: |
+          keytool -genkey -v -keystore release.keystore -alias releasekey -keyalg RSA -keysize 2048 -validity 10000 -storepass mypassword -keypass mypassword -dname "CN=Ayoub, OU=Dev, O=App, L=City, S=State, C=MA"
+          
+          # توقيع ملف الـ AAB باستخدام jarsigner
+          jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 -keystore release.keystore -storepass mypassword platforms/android/app/build/outputs/bundle/release/app-release.aab releasekey
+
+      - name: Upload Signed AAB Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: app-release-aab
-          path: platforms/android/app/build/outputs/bundle/release/*.aab
+          name: app-release-signed-aab
+          path: platforms/android/app/build/outputs/bundle/release/app-release.aab
