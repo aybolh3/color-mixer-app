@@ -1,5 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ayoub.colormixstudio" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.ayoub.colormixstudio" version="1.0.0" 
+        xmlns="http://www.w3.org/ns/widgets" 
+        xmlns:cdv="http://cordova.apache.org/ns/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+        
     <name>ColorMix Studio</name>
     <description>Color Mixing Application</description>
     <author email="dev@example.com">Ayoub</author>
@@ -7,4 +11,12 @@
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
+
+    <!-- إضافة تصاريح الصور والملفات لنظام أندرويد -->
+    <platform name="android">
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+        </config-file>
+    </platform>
 </widget>
